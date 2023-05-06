@@ -1,0 +1,42 @@
+.loginPage{
+    font-size: 14px;
+    flex-direction: column;
+    .logo-box{
+        width: 100px;
+        height: 100px;
+        background: #ffffff;
+        border-radius: 50%;
+        margin-bottom: 16px;
+        border: 1px solid #B9B9B9;
+    }
+    .g6{
+        color: #666;
+    }
+    .row{
+        font-size: 15px;
+        color: #666;
+    }
+    .oemName{
+        font-weight: bold;
+        color: #333;
+        margin-right: 10px;
+    }
+    .power{
+        margin-top: 40px;
+        margin-bottom: 55px;
+        flex-direction: column;
+    }
+    .btn{
+        width: 182px;
+        height: 40px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .auth{
+        color: #fff;
+    }
+    .back{
+        margin-top: 11px;
+    }
+}

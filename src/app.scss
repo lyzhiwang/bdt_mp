@@ -1,0 +1,75 @@
+page {
+    --nut-divider-text-color: #ccc;
+    font-family: 'Microsoft YaHei, Microsoft YaHei-Regular';
+}
+view {
+    box-sizing: border-box;
+}
+.flex {
+    display: flex;
+}
+.fcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page {
+    width: 100%;
+    min-height: 100vh;
+    background: #f8f8f8;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: calc(65px + constant(safe-area-inset-bottom));
+    padding-bottom: calc(65px + env(safe-area-inset-bottom));
+}
+.scrollPage {
+    width: 100%;
+    height: calc(100vh - 65px - constant(safe-area-inset-bottom));
+    height: calc(100vh - 65px - env(safe-area-inset-bottom));
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+}
+.headertext {
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+.ells {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+.between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page2 {
+    width: 100%;
+    min-height: 100vh;
+    background: #f2f2f2;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: constant(safe-area-inset-bottom) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+}
+.safeArea{
+    padding-bottom: constant(safe-area-inset-bottom) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+}
+.avatar{
+    border-radius: 50%;
+    background-color: #ccc;
+}
+.nut-empty {
+    width: 100%;
+}
+.r{
+    color: #FF1D42;
+}

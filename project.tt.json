@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "bdt_mp",
+  "description": "this is a project for taro + nutUI new version",
+  "appid": "ttb49dc2202ba2eee401",
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram"
+}
