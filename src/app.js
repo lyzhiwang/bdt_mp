@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { getSystemInfoSync } from '@tarojs/taro'
 import CdnImg from "@/components/CdnImg";
 import './router/guard'
 import './app.scss'
@@ -16,11 +15,6 @@ const App = createApp({
     // config.getSystemConf();
     // 获取自定义公共头部的高度
     config.getHeaderHeight();
-    // 判断是否是IOS系统
-    const result = getSystemInfoSync()
-    if(result.system.includes('iOS')){
-        config.setIOS(true);
-    }
   },
   onLaunch(options){
     if(options){

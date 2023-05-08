@@ -1,5 +1,5 @@
 <template>
-    <view class="customer-tab-bar">
+    <view class="customer-tab-bar" :style="{'padding-bottom': `${config.safeAreaBot}px`}">
         <view class="tab" v-for="(item, i) in tabs" :key="item.icon" @click="tabSwitch(i)">
             <cdn-img :src="item.active" class="tabicon" mode="aspectFit" v-if="config.tabIndex===i"/>
             <cdn-img :src="item.unactive" class="tabicon" mode="aspectFit" v-else/>
@@ -35,11 +35,11 @@ const tabSwitch = (index) => {
 <style lang="scss">
 .customer-tab-bar{
     width: 100%;
-    height: 65px;
-    background: #161616;
+    height: 50px;
+    background: #fff;
     display: flex;
-    padding-bottom: constant(safe-area-inset-bottom);
-    padding-bottom: env(safe-area-inset-bottom);
+    // padding-bottom: constant(safe-area-inset-bottom);
+    // padding-bottom: env(safe-area-inset-bottom);
     box-sizing: content-box;
     box-shadow: -1px 0 5px #E5E5E5;
     position: fixed;
@@ -55,6 +55,7 @@ const tabSwitch = (index) => {
     .tabicon{
         width: 25px;
         height: 25px;
+        transition: all 1s;
         .cdn{
             width: 100%;
             height: 100%;
@@ -62,13 +63,8 @@ const tabSwitch = (index) => {
     }
     .name{
         margin-top: 5px;
-        font-size: 13px;
-        &.ua{
-            color: #999;
-        }
-        &.a{
-            color: #fff;
-        }
+        font-size: 12px;
+        color: #323333;
     }
 }
 </style>
