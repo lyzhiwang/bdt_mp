@@ -38,13 +38,12 @@ const tabSwitch = (index) => {
     height: 50px;
     background: #fff;
     display: flex;
-    // padding-bottom: constant(safe-area-inset-bottom);
-    // padding-bottom: env(safe-area-inset-bottom);
     box-sizing: content-box;
     box-shadow: -1px 0 5px #E5E5E5;
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 10;
     .tab{
         flex: 1;
         display: flex;
@@ -53,8 +52,8 @@ const tabSwitch = (index) => {
         align-items: center;
     }
     .tabicon{
-        width: 25px;
-        height: 25px;
+        width: 23px;
+        height: 23px;
         transition: all 1s;
         .cdn{
             width: 100%;
@@ -62,7 +61,7 @@ const tabSwitch = (index) => {
         }
     }
     .name{
-        margin-top: 5px;
+        margin-top: 2px;
         font-size: 12px;
         color: #323333;
     }
