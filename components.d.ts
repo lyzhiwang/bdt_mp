@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     ListStatus: typeof import('./src/components/ListStatus.vue')['default']
     NavAndPhone: typeof import('./src/components/NavAndPhone.vue')['default']
     NutButton: typeof import('@nutui/nutui-taro')['Button']
+    NutCheckbox: typeof import('@nutui/nutui-taro')['Checkbox']
     NutCol: typeof import('@nutui/nutui-taro')['Col']
     NutRow: typeof import('@nutui/nutui-taro')['Row']
     SafeAreaView: typeof import('./src/components/SafeAreaView.vue')['default']

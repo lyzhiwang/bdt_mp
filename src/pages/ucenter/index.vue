@@ -6,12 +6,12 @@
         <view class="info" v-if="user.isLogin"  @click="goToSub('profile/index')">
             <cdn-img class="avatar" :src="info.avatarUrl"/>
             <view class="nickname">{{ info.nickName }}</view>
-            <view class="phone">{{ info.phone }}</view>
+            <!-- <view class="phone">{{ info.phone }}</view> -->
         </view>
         <view class="info noLogin" v-else  @click="goToLogin">
             <cdn-img src="/static/img/me/default.png" class="avatar" mode="aspectFit"/>
             <view class="nickname">未登录</view>
-            <view>一键登录</view>
+            <view class="loginBtn fcenter">一键登录<RectRight class="rightIcon"/></view>
         </view>
         <view class="block">
             <nut-row>
@@ -29,7 +29,7 @@
         </nut-row>
         <view class="desc fcenter" :style="{'padding-bottom': `${config.safeAreaBot}px`}">
             <view>V1.0.3</view>
-            <view>北抖团提供技术支持 copyright 2019-2023</view>
+            <view>北抖团提供技术支持 copyright 2019-{{ now }}</view>
             <view>提供云计算服务</view>
         </view>
     </view>
@@ -45,8 +45,10 @@ import { useUserStore, useConfigStore } from '@/stores'
 import { switchTaBar } from '@/utils/nav'
 import { navigateTo } from '@/router'
 import { storeToRefs } from 'pinia';
+import { RectRight } from '@nutui/icons-vue-taro';
 import "./index.scss";
 
+const now = new Date().getFullYear()
 const myOrder = [
     {icon: '/static/img/me/unpaid.png', name: '待付款', url: 'orders/index?type=1'},
     {icon: '/static/img/me/nouse.png', name: '待使用', url: 'orders/index?type=2'},
