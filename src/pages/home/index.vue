@@ -1,15 +1,70 @@
 <template>
-<view class="page2">
-	<view>首页</view>
+<view class="page">
 	<CustomTabBar/>
+	<nut-swiper :init-page="1" :pagination-visible="true" :loop="true" pagination-color="#426543" auto-play="3000">
+    <nut-swiper-item v-for="(item,index) in imgsList" :key="index">
+			<cdn-img class="swiper-img" :src="item"/>
+    </nut-swiper-item>
+  </nut-swiper>
+	
+	<view class="main">
+
+		<!-- 热卖爆款 -->
+		<view class="hot-box">
+			<cdn-img class="hot-h-img" src="/static/img/home/hot-header.png"/>
+			<view class="hot-box-main">
+				<view class="hot-bm-header">
+					<cdn-img class="title-img" src="/static/img/home/hot-title.png"/>
+					<text>更多></text>
+				</view>	
+				<view class="goods-list">
+					<scroll-view scroll-x="true" style="width: 100%; overflow:hidden;">
+						<view style="display: flex;">
+							<goods-box v-for="i in 10"></goods-box>
+						</view>	
+					</scroll-view>
+					
+				</view>
+			</view>
+		</view>
+
+		<!-- 菜单 -->
+		<view class="tabBox">
+			<view class="tabItem" v-for="(item, index) in tabs" :key="index" :class="{'action-tab': current===item.value}" @click="changeTab(item)">{{item.label}}</view>
+		</view>
+
+		<view class="goodsList">
+			<view class="goodsItem" v-for="i in 10" @click="toDetail">
+				<cdn-img class="goodsImg" src="/static/img/home/hot-title.png"/>
+				<view class="g-content">
+					<nut-ellipsis 
+					content="正宗四川豌豆小面唇齿留香正宗四川豌豆小面唇齿留香正宗四川豌豆小面唇齿留香……" 
+					direction="end"
+					class="titleBox" 
+					rows="3"></nut-ellipsis>
+
+					<view class="g-info">
+						<view class="price-Box">
+							<view class="price">￥10.99 <text class="discount">8.5折</text></view>
+							<view class="old-price">￥16.00</view>
+						</view>
+
+						<view class="btn">立即购买</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>
 </template>
 
 <script>
 import { ref, reactive, toRefs } from 'vue'
 import CustomTabBarVue from '../../components/CustomTabBar.vue';
+import GoodsBox from "../../components/GoodsBox.vue";
 import { useDidShow, useLoad } from '@tarojs/taro'
 import { useUserStore, useConfigStore } from "@/stores";
+import { navigateTo } from "@/router/index";
 import "./index.scss";
 export default {
 	name: 'Index',
@@ -30,8 +85,21 @@ export default {
 		useDidShow(()=>{
 			config.setSelecTab(0)
 		})
+
+		const imgsList = ref(['https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg', 'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg'])
+
+		const tabs = ref([{value: 1, label: '人气新品'},{value: 2, label: '当前热门'},{value: 3, label: '离我最近'},{value: 4, label: '开抢预告'}])
+		const current = ref(1) // 当前选择菜单
+		const changeTab = item =>{
+			current.value = item.value
+		}
+
+		const toDetail = ()=>{
+			navigateTo({url: '/pagesub/detail/index'})
+		}
+
 		return {
-			...toRefs(state),
+			...toRefs(state),imgsList, tabs, current, changeTab, toDetail
 		}
 	},
 	onShareAppMessage(res){ // 点击右上角转发

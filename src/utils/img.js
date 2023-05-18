@@ -11,4 +11,10 @@ export default{
   '/static/img/me/refunded.png': require('/static/img/me/refunded.png'),
   '/static/img/me/cs.png': require('/static/img/me/cs.png'),
   '/static/img/me/credential.png': require('/static/img/me/credential.png'),
+  '/static/img/home/hot-header.png': require('/static/img/home/hot-header.png'),
+  '/static/img/home/hot-title.png': require('/static/img/home/hot-title.png'),
+  '/static/img/detail/attention.png': require('/static/img/detail/attention.png'),
+  '/static/img/detail/home.png': require('/static/img/detail/home.png'),
+  '/static/img/detail/mine.png': require('/static/img/detail/mine.png'),
+  '/static/img/detail/share.png': require('/static/img/detail/share.png'),
 }
