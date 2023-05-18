@@ -1,0 +1,244 @@
+.orderdetail{
+    overflow: hidden;
+    .box{
+        padding: 14px 17px 4px;
+        display: flex;
+        justify-content: space-between;
+        .countdown{
+            color: #FE582A;
+            display: inline-block;
+            margin-top: -2px;
+        }
+        .time{
+            color: #FE582A;
+            font-size: 16px;
+            font-weight: 700; 
+            display: flex;
+			align-items: center;
+			margin-bottom: 8px;
+			.status_text{
+				margin-left: 8px;
+			}
+        }
+        .type{
+            display: flex;
+            color: #666666;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .top{
+            display: flex;
+            flex-direction: column;
+        }
+        .cancel{
+            display: flex;
+            align-items: center;
+            border: 0.5px solid #666666;
+            border-radius: 13px;
+            width: 75px;
+            height: 25px;
+            justify-content: center;
+            color: #666666;
+        }
+     
+    }
+    
+    
+    .head{
+        font-size: 14px;
+        font-weight: 700;
+    }
+    
+    .starBoxCard{
+        width: 355px;
+        display: flex;
+        margin: 10px auto 8px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        padding: 12px 5px 13px;
+        align-items: center;
+    }
+    
+    .s_title{
+        font-size: 14px;
+        color: #222222;
+        font-weight: 700;
+    }
+    
+    .BoxCard_info{
+        flex: 1;
+        height: 71px;
+        .tagRow{
+            flex-wrap: wrap;
+            margin: 6px 0;
+            .tag{
+                margin: 2px 17px 0 0;
+                font-size: 12px;
+                font-weight: 400;
+                color: #666666;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    .money{
+        color: #666666;
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .position{
+        font-size: 12px;
+        color: #444444;
+    }
+    .pic{
+        border-radius: 5px;
+        background-color: #ccc;
+        position: relative;
+        margin-right: 10px;
+    }
+    .mealImg {
+        width: 71px;
+        height: 71px;
+        margin-right: 10px;
+    }
+    .b_buy{
+        margin-bottom: 60px;
+    }
+    .Qr{
+        display: flex;
+        padding: 12px 10px 0px;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        .refund{
+         color: #333333;
+         font-size: 13px;
+         border: solid 0.5px  #E2E0E1;
+         padding: 5px 7px;
+        }
+        .s_store{
+            color: #000000;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .validity{
+            font-size: 12px;
+            color: #666666;
+            margin-top: 9px;
+        }
+    }
+	.divider{
+        width: 100%;
+	}
+    
+    .Verification{
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+        padding-bottom: 7px;
+        width: 100%;
+        .qrCode {
+            width: 125px;
+            height: 125px;
+            canvas {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+        .notice {
+            font-size: 10px;
+            color: #999;
+        }
+    }
+    .msg{
+        display: flex;
+        margin: 0 10px 10px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        padding: 12px 10px 13px;
+        flex-direction: column;
+        padding: 12px 10px 13px;
+        .message{
+            color: #000000;
+            font-size: 15px;
+        }
+		.text{
+			line-height: 28px;
+		}
+        .right{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .span{
+            color: #FE582A;
+            font-size: 18px;
+            font-weight: 400;
+            display: inline-block;
+        }
+    
+        .list{
+            display: flex;
+            justify-content: space-between;
+			padding-top: 10px;
+        }
+    }
+	.closeBox{
+		width: 16px;
+		height: 16px;
+		background-color: #999999;
+		border-radius: 50%;
+		.ico-close{
+			font-size: 8px;
+		}
+	}
+	.leftStatusIcon{
+		margin-right: 8px;
+	}
+    .btn{
+        width: 300px;
+        height: 39px;
+        background: linear-gradient(#fd6a29 10%);
+        border-radius: 19.5px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        margin: 20px 38px;
+        color: #ffffff;
+        font-weight: 700;
+    }
+    .nut-popup{
+       border-radius: 10px;
+    }
+    .Coupon{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 21px 0;
+        .copy{
+            width: 11.5px;
+            height: 11.5px;
+            display: inline-block;
+        }
+        .title{
+            font-size: 15px;
+            color: #333333;
+            font-weight: 700;
+        }
+        .txt{
+            font-size: 14px;
+            color: #000000;
+            font-weight: 400;
+            margin-top: 11px;
+        }
+        .close{
+            font-size: 15px;
+            font-weight: 400;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
+
+

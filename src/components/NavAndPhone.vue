@@ -60,14 +60,14 @@ function viewLocation(){
         margin-top: 3px;
     }
     .fcenter{
-        background-color: #eef4ff;
+        background-color: #FFF7ED;
         border-radius: 50%;
         overflow: hidden;
         width: 23px;
         height: 23px;
     }
     .iconfont{
-        color: #5e95e5;
+        color: #f0d5b5;
         font-size: 14px;
     }
 }

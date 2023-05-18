@@ -20,6 +20,9 @@ export default defineAppConfig({
       root: 'pagesub',
       pages: [
         'sub1/index',
+        'orders/index',
+        'orders/detail',
+        'refund/index',
         'detail/index',
         'credentials/index',
       ]

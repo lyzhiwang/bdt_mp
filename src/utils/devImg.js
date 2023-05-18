@@ -18,4 +18,6 @@ export default{
   '/static/img/detail/mine.png': require('/static/img/detail/mine.png'),
   '/static/img/detail/share.png': require('/static/img/detail/share.png'),
   '/static/img/icon/aptitude.png': require('/static/img/icon/aptitude.png'),
+  '/static/img/copy.png': require('/static/img/copy.png'),
+
 }

@@ -1,0 +1,104 @@
+
+.refundPage{
+    overflow: hidden;
+    .msg_info{
+        margin: 11px 12px 8px;
+        padding: 12px 5px 13px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        .message{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 12px;
+            color: #333333;
+        }
+        .money{
+            color: #FE3234;
+        }
+        .h3{
+            margin-bottom: 10px;
+        }
+        .cause{
+           text-align: center;
+           margin-bottom: 10px;
+        }
+        .desc{
+            background: #F8F8F8;
+            width: 100%;
+        }
+        .nut-input-number__icon {
+            background: #F8F8F8;
+        }
+        .nut-input-number .h5-input, .nut-input-number__text--readonly, .nut-input-number__text--input {
+            background-color: #FFFFFF;
+        }
+        .tips{
+            font-size: 12px;
+            font-weight: 400;
+            color: #fd6a29;
+        }
+    }
+    .btn{
+        bottom: 0;
+        position: fixed;
+        left: 0;
+        margin-bottom: 24px;
+        margin-left: 24px;
+    }
+    .nut-radio-group {
+         display: inline;
+    }
+    .nut-radio-group .nut-radio {
+        // border-bottom: 1px solid #D5D5D5;
+        padding: 10px 0;
+        &:last-child{
+            border: 0;
+        }
+    }
+    .nut-textarea {
+        background: #F8F8F8;
+        padding: 10px 15px;
+        margin-top: 5px;
+    }
+    .tip{
+        font-size: 12px;
+        color: #333333;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+    .etc{
+        color: #FE3234;
+    }
+    .bot{
+        height: 35px;
+        width: 325px;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 0 10px;
+        font-weight: 600;
+        // background-color: #FE3234;
+        background: linear-gradient(#fd6a29 8%, #fd6a29 100%);
+        color: #FFFFFF;
+        margin: 10px auto;
+    }
+    .nut-dialog__footer .nut-button {
+        width: 50px;
+    }
+    .region .nut-cell {
+        box-shadow: none;
+        padding: 0px;
+        margin:0px;
+    }
+    .region .nut-cell__title{
+        min-width: 0px;
+    }
+    .region {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+    }
+}
