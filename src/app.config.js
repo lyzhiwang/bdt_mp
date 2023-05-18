@@ -25,6 +25,8 @@ export default defineAppConfig({
         'refund/index',
         'detail/index',
         'credentials/index',
+        'payment/index',
+        'seller/store',
       ]
     },
   ],

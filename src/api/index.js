@@ -50,3 +50,15 @@ export function updateProfile(data) {
     data
   })
 }
+
+// 创建订单
+export function createOrder(data) {
+	return request({
+    headers: {
+      loading: true
+    },
+	  url: `place/order`,
+	  method: 'post',
+    data
+	})
+}

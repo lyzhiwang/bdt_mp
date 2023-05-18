@@ -3,7 +3,6 @@
 	.nut-tabpane{
 		padding: 56px  5px;
 	}
-   
     .nut-tab-pane {
         padding: 10px  5px;
         background-color: transparent;
@@ -11,14 +10,20 @@
 	.nut-tabs__titles{
 		width: 100%;
         position: fixed;
-        display: flex;
-        justify-content: space-between;
 		top: 0;
 		left: 0;
 		z-index: 2;
 		background-color: #fff;
 		box-sizing: border-box;
         border-radius: 0 0 10px 10px;
+        .nut-tabs__titles-item{
+            display: inline-flex;
+            flex: 1;
+            width: 25%;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+        }
 	}
     .starBoxCard{
         width: 355px;

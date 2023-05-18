@@ -4,7 +4,7 @@
         <view class="left">
             <view class="h3">适用门店</view>
         </view>
-        <view class="s_store fcenter" >全部门店<Right color="#666" /></view>
+        <view class="s_store fcenter" @click="goToSub('seller/store')">全部门店<Right color="#666" /></view>
     </view>
     <view class="BoxCard">
         <cdn-img src="src"  class="pic" mode="aspectFill"/>  

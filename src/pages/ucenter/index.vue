@@ -13,14 +13,13 @@
             <view class="nickname">未登录</view>
             <view class="loginBtn fcenter">一键登录<RectRight class="rightIcon"/></view>
         </view>
-        <view class="block">
-            <nut-row>
-                <nut-col :span="6" class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url, true) ">
-                    <cdn-img class="icon" :src="item.icon"/>
-                    <view class="name">{{ item.name }}</view>
-                </nut-col>
-            </nut-row>
-        </view>
+        <nut-row class="block">
+            <!-- <nut-col :span="6" class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url, true)"> -->
+            <nut-col :span="6" class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url)">
+                <cdn-img class="icon" :src="item.icon"/>
+                <view class="name">{{ item.name }}</view>
+            </nut-col>
+        </nut-row>
         <nut-row class="block" flex-wrap="wrap">
             <nut-col :span="6" class="fcenter item" v-for="(item, i) in other" :key="i" @click="goToSub(item.url)">
                 <cdn-img class="icon" :src="item.icon"/>

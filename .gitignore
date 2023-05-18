@@ -6,5 +6,5 @@ node_modules/
 .DS_Store
 .swc
 yarn.lock
-
+components.d.ts
 project.private.config.json

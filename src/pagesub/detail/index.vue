@@ -32,7 +32,8 @@
           </view>
         </view>
       </view>
-
+      <!-- 适用门店 -->
+      <BuyDetail />
       <!-- 套餐详情 -->
       <view class="outBox mt-10">
         <view class="goodsTitle">套餐详情</view>
@@ -82,13 +83,14 @@
           <view>分享</view>
         </view>
       </view>
-      <view class="t-btn">立即抢购</view>
+      <view class="t-btn" @click="goToSub('payment/index')">立即抢购</view>
     </SafeAreaView>
   </view>
 </SafeAreaView>
 </template>
 
 <script setup>
+  import { goToSub } from '@/utils/nav'
   import { ref, onBeforeMount } from 'vue'
   import "./index.scss";
 

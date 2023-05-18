@@ -1,12 +1,12 @@
 <template>
-<view class="page credentials">
+<SafeAreaView class="page credentials">
     <view class="title">{{ typeStr }}资质展示</view>
     <view class="list">
         <view class="item fcenter">
             <cdn-img src="" lazyLoad class="pic"/>
         </view>
     </view>    
-</view>
+</SafeAreaView>
 </template>
     
 <script setup>
