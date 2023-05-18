@@ -17,4 +17,5 @@ export default{
   '/static/img/detail/home.png': require('/static/img/detail/home.png'),
   '/static/img/detail/mine.png': require('/static/img/detail/mine.png'),
   '/static/img/detail/share.png': require('/static/img/detail/share.png'),
+  '/static/img/icon/aptitude.png': require('/static/img/icon/aptitude.png'),
 }

@@ -43,7 +43,7 @@ async function getCdnUrl (newVal) {
   if (newVal.includes("http")) {
     cdnUrl.value = newVal;
   } else if (process.env.NODE_ENV === "development") {
-    const img = await import("@/utils/img");
+    const img = await import("@/utils/devImg");
     cdnUrl.value = img.default[newVal];
   } else {
     // 拿到全局注入的cdn地址 拼接起来

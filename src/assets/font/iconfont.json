@@ -1,17 +1,10 @@
 {
-  "id": "3902234",
-  "name": "客来团",
+  "id": "4067196",
+  "name": "北斗团",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
-    {
-      "icon_id": "14401775",
-      "name": "phone",
-      "font_class": "phone",
-      "unicode": "e683",
-      "unicode_decimal": 59011
-    },
     {
       "icon_id": "2076221",
       "name": " 定位小",
@@ -20,18 +13,18 @@
       "unicode_decimal": 59518
     },
     {
-      "icon_id": "8802634",
-      "name": "消息",
-      "font_class": "xiaoxi",
-      "unicode": "e648",
-      "unicode_decimal": 58952
+      "icon_id": "14401775",
+      "name": "phone",
+      "font_class": "phone",
+      "unicode": "e683",
+      "unicode_decimal": 59011
     },
     {
-      "icon_id": "594371",
-      "name": "分享",
-      "font_class": "fenxiang",
-      "unicode": "e633",
-      "unicode_decimal": 58931
+      "icon_id": "18166694",
+      "name": "抖音",
+      "font_class": "douyin",
+      "unicode": "e8db",
+      "unicode_decimal": 59611
     }
   ]
 }

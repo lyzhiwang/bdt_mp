@@ -2,9 +2,9 @@
 <view class="navAndPhone flex">
     <view class="item" @click="viewLocation">
         <view class="fcenter">
-            <IconFont font-class-name="iconfont" class-prefix="icon" name="dingweixiao"/>
+            <cdn-img src="/static/img/icon/aptitude.png" class="icon" mode="aspectFit"/>
         </view>
-        <view class="name">导航</view>
+        <view class="name">资质</view>
     </view>
     <view class="item">
         <view class="fcenter" @click="makePhoneCall({phoneNumber: phone})">
