@@ -15,7 +15,7 @@
             <text class="r price">{{ total }}</text>
         </view>
     </view>
-    <nut-cell title="购买须知" is-link></nut-cell>
+    <nut-cell title="购买须知" is-link @click="goToSub('payment/notice')"></nut-cell>
     <!-- <view class="block payWay between">
         <view class="fcenter">
             <cdn-img src="/static/img/wechat.png" class="wechat"/>
@@ -34,7 +34,7 @@ import { ref, reactive, computed } from 'vue';
 import { useOrderStore, useUserStore } from '@/stores'
 import { storeToRefs } from 'pinia';
 import { createOrder } from '@/api/index'
-import { firstLogin } from '@/utils/nav'
+import { firstLogin, goToSub } from '@/utils/nav'
 import { redirectTo } from '@/router'
 import "./index.scss";
 definePageConfig({

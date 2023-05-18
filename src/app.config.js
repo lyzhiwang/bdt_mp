@@ -26,6 +26,7 @@ export default defineAppConfig({
         'detail/index',
         'credentials/index',
         'payment/index',
+        'payment/notice',
         'seller/store',
       ]
     },

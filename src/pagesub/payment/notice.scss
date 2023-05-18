@@ -1,0 +1,17 @@
+.noticePage{
+    color: #333333;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: hidden;
+    .h1{
+        font-size: 15px;
+        font-family: Microsoft YaHei, Microsoft YaHei-Bold;
+        font-weight: 700;
+        margin-top: 18px;
+    }
+    .desc{
+        margin-top: 20px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+}
