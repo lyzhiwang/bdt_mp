@@ -15,7 +15,7 @@
         </view>
         <view class="block">
             <nut-row>
-                <nut-col :span="6" class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url) ">
+                <nut-col :span="6" class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url, true) ">
                     <cdn-img class="icon" :src="item.icon"/>
                     <view class="name">{{ item.name }}</view>
                 </nut-col>
@@ -40,9 +40,9 @@
 <script setup>
 import CustomHeader from "@/components/CustomHeader"
 import { ref } from 'vue'
-import { useDidShow, makePhoneCall, showToast, showModal } from '@tarojs/taro'
+import { useDidShow, makePhoneCall, showToast } from '@tarojs/taro'
 import { useUserStore, useConfigStore } from '@/stores'
-import { switchTaBar } from '@/utils/nav'
+import { goToSub } from '@/utils/nav'
 import { navigateTo } from '@/router'
 import { storeToRefs } from 'pinia';
 import { RectRight } from '@nutui/icons-vue-taro';
@@ -57,7 +57,7 @@ const myOrder = [
 ]
 const other = ref([
     {icon: '/static/img/me/cs.png', name: '联系客服', url: ''},
-    {icon: '/static/img/me/credential.png', name: '服务资质', url: 'concern/index'},
+    {icon: '/static/img/me/credential.png', name: '服务资质', url: 'credentials/index'},
 ])
 
 const user = useUserStore()
@@ -68,21 +68,6 @@ const { sysinfo } = storeToRefs(config)
 function CellCs(){
     if(!sysinfo.value.phone) return showToast({title: '客服电话还未配置，暂时无法拨打',icon: 'none'})
     makePhoneCall({phoneNumber: sysinfo.value.phone})
-}
-function goToSub(url){
-    if(!url) return CellCs()
-    if(!user.isLogin){
-        return showModal({
-            title: '提示',
-            content: '请先登录',
-            success: function (res) {
-                if (res.confirm) {
-                    navigateTo({ url: '/pages/login/index' })
-                }
-            }
-        })
-    }
-    navigateTo({ url: '/pagesub/'+url })
 }
 function goToLogin(){
    navigateTo({ url: '/pages/login/index' })

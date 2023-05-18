@@ -11,4 +11,5 @@ export default{
   '/static/img/me/refunded.png': require('/static/img/me/refunded.png'),
   '/static/img/me/cs.png': require('/static/img/me/cs.png'),
   '/static/img/me/credential.png': require('/static/img/me/credential.png'),
+  '/static/img/icon/aptitude.png': require('/static/img/icon/aptitude.png'),
 }

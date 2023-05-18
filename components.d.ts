@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     NutButton: typeof import('@nutui/nutui-taro')['Button']
     NutCheckbox: typeof import('@nutui/nutui-taro')['Checkbox']
     NutCol: typeof import('@nutui/nutui-taro')['Col']
+    NutDialog: typeof import('@nutui/nutui-taro')['Dialog']
     NutRow: typeof import('@nutui/nutui-taro')['Row']
     SafeAreaView: typeof import('./src/components/SafeAreaView.vue')['default']
     TextareaBox: typeof import('./src/components/TextareaBox.vue')['default']
