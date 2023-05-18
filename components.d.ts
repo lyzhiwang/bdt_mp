@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     CdnImg: typeof import('./src/components/CdnImg.vue')['default']
     CustomHeader: typeof import('./src/components/CustomHeader.vue')['default']
     CustomTabBar: typeof import('./src/components/CustomTabBar.vue')['default']
+    GoodsBox: typeof import('./src/components/GoodsBox.vue')['default']
     InputBox: typeof import('./src/components/InputBox.vue')['default']
     ListStatus: typeof import('./src/components/ListStatus.vue')['default']
     NavAndPhone: typeof import('./src/components/NavAndPhone.vue')['default']
@@ -17,7 +18,10 @@ declare module '@vue/runtime-core' {
     NutCheckbox: typeof import('@nutui/nutui-taro')['Checkbox']
     NutCol: typeof import('@nutui/nutui-taro')['Col']
     NutDialog: typeof import('@nutui/nutui-taro')['Dialog']
+    NutEllipsis: typeof import('@nutui/nutui-taro')['Ellipsis']
     NutRow: typeof import('@nutui/nutui-taro')['Row']
+    NutSwiper: typeof import('@nutui/nutui-taro')['Swiper']
+    NutSwiperItem: typeof import('@nutui/nutui-taro')['SwiperItem']
     SafeAreaView: typeof import('./src/components/SafeAreaView.vue')['default']
     TextareaBox: typeof import('./src/components/TextareaBox.vue')['default']
   }

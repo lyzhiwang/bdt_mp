@@ -1,8 +1,8 @@
 <template>
 <SafeAreaView class="page ucenter">
     <cdn-img class="bg1" src="/static/img/me/bg1.png"/>
-    <CustomHeader onlyStatus/>
     <view class="con">
+        <CustomHeader onlyStatus/>
         <view class="info" v-if="user.isLogin"  @click="goToSub('profile/index')">
             <cdn-img class="avatar" :src="info.avatarUrl"/>
             <view class="nickname">{{ info.nickName }}</view>

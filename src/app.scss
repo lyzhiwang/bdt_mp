@@ -23,8 +23,6 @@ view {
     background: #f8f8f8;
     font-size: 14px;
     color: #333;
-    padding-bottom: calc(50px + constant(safe-area-inset-bottom));
-    padding-bottom: calc(50px + env(safe-area-inset-bottom));
 }
 .scrollPage {
     width: 100%;
@@ -60,12 +58,6 @@ view {
     background: #f2f2f2;
     font-size: 14px;
     color: #333;
-    padding-bottom: constant(safe-area-inset-bottom) !important;
-    padding-bottom: env(safe-area-inset-bottom) !important;
-}
-.safeArea{
-    padding-bottom: constant(safe-area-inset-bottom) !important;
-    padding-bottom: env(safe-area-inset-bottom) !important;
 }
 .avatar{
     border-radius: 50%;

@@ -1,14 +1,12 @@
 <template>
-<view class="page">
-	<CustomTabBar/>
+<SafeAreaView class="page">
 	<nut-swiper :init-page="1" :pagination-visible="true" :loop="true" pagination-color="#426543" auto-play="3000">
-    <nut-swiper-item v-for="(item,index) in imgsList" :key="index">
+		<nut-swiper-item v-for="(item,index) in imgsList" :key="index">
 			<cdn-img class="swiper-img" :src="item"/>
-    </nut-swiper-item>
-  </nut-swiper>
+		</nut-swiper-item>
+  	</nut-swiper>
 	
 	<view class="main">
-
 		<!-- 热卖爆款 -->
 		<view class="hot-box">
 			<cdn-img class="hot-h-img" src="/static/img/home/hot-header.png"/>
@@ -35,7 +33,7 @@
 
 		<view class="goodsList">
 			<view class="goodsItem" v-for="i in 10" @click="toDetail">
-				<cdn-img class="goodsImg" src="/static/img/home/hot-title.png"/>
+				<cdn-img class="goodsImg" src="/static/img/home/hot-title.png" mode="aspectFill" lazyLoad/>
 				<view class="g-content">
 					<nut-ellipsis 
 					content="正宗四川豌豆小面唇齿留香正宗四川豌豆小面唇齿留香正宗四川豌豆小面唇齿留香……" 
@@ -55,12 +53,14 @@
 			</view>
 		</view>
 	</view>
-</view>
+	<!-- 底部TabBar -->
+	<CustomTabBar/>
+</SafeAreaView>
 </template>
 
 <script>
 import { ref, reactive, toRefs } from 'vue'
-import CustomTabBarVue from '../../components/CustomTabBar.vue';
+import CustomTabBar from '../../components/CustomTabBar.vue';
 import GoodsBox from "../../components/GoodsBox.vue";
 import { useDidShow, useLoad } from '@tarojs/taro'
 import { useUserStore, useConfigStore } from "@/stores";
@@ -68,7 +68,7 @@ import { navigateTo } from "@/router/index";
 import "./index.scss";
 export default {
 	name: 'Index',
-	components: { CustomTabBarVue },
+	components: { CustomTabBar },
 	setup() {
 		const user = useUserStore()
         const config = useConfigStore()

@@ -22,7 +22,7 @@ const props = defineProps({
 
 <template>
 <view class="goodsBox">
-  <cdn-img class="goods-img" :src="item.img"/>
+  <cdn-img class="goods-img" :src="item.img" mode="aspectFill" lazyLoad/>
   <nut-ellipsis 
     :content="item.title" 
     direction="end"
@@ -53,7 +53,6 @@ const props = defineProps({
   .priceBox{
     display: flex;
     align-items: center;
-    font-size: 11px;
     font-family: Microsoft YaHei, Microsoft YaHei-Regular;
     font-weight: 400;
     color: #fe3234;
@@ -62,6 +61,10 @@ const props = defineProps({
       color: #666666;
       text-decoration: dashed;
       margin-left: 10px;
+    }
+    .c-p{
+      font-weight: bold;
+      font-size: 12px;
     }
   }
 }

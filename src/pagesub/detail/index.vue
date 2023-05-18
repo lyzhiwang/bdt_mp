@@ -1,10 +1,11 @@
 <template>
+<SafeAreaView>
   <view class="page">
     <view class="content">
       <view class="swiperBox">
         <nut-swiper :init-page="1" :loop="true" auto-play="3000" @change="changeSwiper">
           <nut-swiper-item v-for="(item,index) in imgsList" :key="index">
-            <cdn-img class="swiper-img" :src="item"/>
+            <cdn-img class="swiper-img" :src="item" mode="aspectFill"/>
           </nut-swiper-item>
           <template v-slot:page>
             <div class="pagination"> {{ current_swiper }}/{{imgsList.length>0?imgsList.length: 0 }} </div>
@@ -66,7 +67,7 @@
       </view>
 
     </view>
-    <view class="footerBox safeArea">
+    <SafeAreaView class="footerBox">
       <view class="tabList">
         <view class="tabItem">
           <cdn-img src="/static/img/detail/home.png" class="t-icon"></cdn-img>
@@ -82,8 +83,9 @@
         </view>
       </view>
       <view class="t-btn">立即抢购</view>
-    </view>
+    </SafeAreaView>
   </view>
+</SafeAreaView>
 </template>
 
 <script setup>

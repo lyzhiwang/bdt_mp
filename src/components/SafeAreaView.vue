@@ -1,5 +1,5 @@
 <template>
-<view :style="{'padding-bottom': `${config.safeAreaBot}px`}">
+<view :style="{'padding-bottom': `${config.safeAreaBot}px!important`}">
     <slot></slot>
 </view>
 </template>

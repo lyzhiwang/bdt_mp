@@ -6,6 +6,7 @@
             <view :class="['name', config.tabIndex===i ? 'a': 'ua']">{{item.title}}</view>
         </view>
     </view>
+    <view class="tabBarholder"></view>
 </template>
 
 <script setup>
@@ -65,5 +66,9 @@ const tabSwitch = (index) => {
         font-size: 12px;
         color: #323333;
     }
+}
+.tabBarholder{
+    width: 100%;
+    height: 50px;
 }
 </style>
