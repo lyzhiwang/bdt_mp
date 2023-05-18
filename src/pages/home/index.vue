@@ -51,6 +51,8 @@
 					</view>
 				</view>
 			</view>
+			<nut-divider v-if="listStatus=='loading'">加载中...</nut-divider>
+      <nut-divider v-else-if="listStatus=='nomore'">没有更多了</nut-divider>
 		</view>
 	</view>
 	<!-- 底部TabBar -->
@@ -62,7 +64,7 @@
 import { ref, reactive, toRefs } from 'vue'
 import CustomTabBar from '../../components/CustomTabBar.vue';
 import GoodsBox from "../../components/GoodsBox.vue";
-import { useDidShow, useLoad } from '@tarojs/taro'
+import { useDidShow, useLoad, useReachBottom } from '@tarojs/taro'
 import { useUserStore, useConfigStore } from "@/stores";
 import { navigateTo } from "@/router/index";
 import "./index.scss";
@@ -71,7 +73,7 @@ export default {
 	components: { CustomTabBar },
 	setup() {
 		const user = useUserStore()
-        const config = useConfigStore()
+    const config = useConfigStore()
 		const state = reactive({})
 		useLoad(async(query) => {
 			const url = decodeURIComponent(query.q)
@@ -82,12 +84,44 @@ export default {
 			// 获取用户信息
 			// user.getUserInfo()
 		});
+
 		useDidShow(()=>{
 			config.setSelecTab(0)
 		})
 
-		const imgsList = ref(['https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg', 'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg'])
+		const params = ref({
+			page: 1,
+			size: 10,
+			type: 1 // 1营业额提现 2活动余额提现
+		})
+		const meta = {}
 
+		const goodsList = ref([])
+
+		useReachBottom(()=>{
+				console.log('触发底部')
+				// const str = (user.mode===1 ? 'star' : 'talent')
+				if(params.value.page >= meta.last_page) return listStatus.value = 'nomore';
+				listStatus.value = 'loading'
+				if(params.value.page < meta.last_page){
+					params.value.page += 1;
+					getList()
+				}
+		})
+
+		const getList=()=>{
+			cashLog(params.value).then(res=>{
+				if(res.meta){
+					meta = res.meta
+				}
+				if(res.data){
+					goodsList.value = goodsList.value.concat(res.data)
+				}
+			})
+		}
+		
+		const imgsList = ref(['https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg', 'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg'])
+		const listStatus = ref('loadmore')
 		const tabs = ref([{value: 1, label: '人气新品'},{value: 2, label: '当前热门'},{value: 3, label: '离我最近'},{value: 4, label: '开抢预告'}])
 		const current = ref(1) // 当前选择菜单
 		const changeTab = item =>{
@@ -99,7 +133,7 @@ export default {
 		}
 
 		return {
-			...toRefs(state),imgsList, tabs, current, changeTab, toDetail
+			...toRefs(state),imgsList, tabs, current, changeTab, toDetail, listStatus
 		}
 	},
 	onShareAppMessage(res){ // 点击右上角转发

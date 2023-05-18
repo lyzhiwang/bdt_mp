@@ -1,3 +1,4 @@
+.detailContent{
 .content{
   width: 100%;
   padding: 5px 10px;
@@ -177,6 +178,7 @@
       font-size: 12px;
       font-weight: 400;
       color: #323333;
+      position: relative;
       .t-icon{
         width: 22.5px;
         height: 22.5px;
@@ -195,4 +197,72 @@
     font-weight: 700;
     color: #ffffff;
   }
+}
+
+.recList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 10px;
+  .recBox{
+    width: 160px;
+    min-height: 223.5px;
+    margin-bottom: 16px;
+    .goodsImg{
+      width: 100%;
+      height: 160px;
+      border-radius: 6px;
+    }
+    .goodsTitle{
+      font-size: 14px;
+      color: #212121;
+    }
+    .recPriceBox{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 5px;
+      .recleftP{
+        display: flex;
+        align-items: flex-end;
+      }
+      .price{
+        font-size: 16px;
+        font-weight: 700;
+        color: #fe582a;
+      }
+      .old_price{
+        font-size: 11px;
+        font-weight: 400;
+        color: #666666;
+        text-decoration: line-through;
+        padding: 0 5px;
+      }
+      .buyBtn{
+        width: 49.5px;
+        height: 22.5px;
+        background: linear-gradient(to right,#ff962f 0%, #fd6a29 100%);
+        border-radius: 11.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: #ffffff;
+      }
+    }
+  }
+}
+.shareButton{
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+}
+.tabBarholder{
+  width: 100%;
+  height: 50px;
+}
 }
