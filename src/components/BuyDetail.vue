@@ -2,7 +2,7 @@
 <view class="stores" >
     <view class="between topstate" >
         <view class="left">
-            <view class="h3">适用门店</view>
+            <view class="h3 title">适用门店</view>
         </view>
         <view class="s_store fcenter" @click="goToSub('seller/store')">全部门店<Right color="#666" /></view>
     </view>
@@ -10,9 +10,9 @@
         <cdn-img src="src"  class="pic" mode="aspectFill"/>  
         <view class="info">
             <view class="range ells">重庆小面（纱厂路店）</view>
-            
-            <view class="position ells"><Location2  color="#666"/>
-                <text>西工区纱厂路245号1幢7层701</text>
+            <view class="location">
+                <Location2  color="#e6c69f"/>
+                <text class="ells address">西工区纱厂路245号1幢7层701</text>
             </view>
         </view>
         <NavAndPhone />
@@ -71,6 +71,11 @@ onBeforeMount(()=>{
             padding: 0px 5px;
             margin-bottom: 6px;
     }
+    .title{
+        font-size: 15px;
+        font-weight: 700;
+        color: #000000;
+    }
     .s_store{
         font-size: 13px;
         color: #666666;
@@ -92,9 +97,9 @@ onBeforeMount(()=>{
         flex: 1;
     }
     .range{
-        font-size: 13px;
+        font-size: 15px;
         color: #333333;
-        font-weight: 600;
+        font-weight: 700;
     }
     .tagRow{
         flex-wrap: wrap;
@@ -118,9 +123,15 @@ onBeforeMount(()=>{
         color: #444444;
         margin-top: 5px;
     }
-    .Location{
-        margin-top: 2px;
-        color: #f0d5b5;
+    .location{
+        margin-top: 8px;
+        display: flex;
+        .address{
+            font-size: 12px;
+            color: #444444;
+            font-weight: 500;
+            margin-top: 2px;
+        }
     }
 }
 </style>

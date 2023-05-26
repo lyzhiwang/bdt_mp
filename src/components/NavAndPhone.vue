@@ -70,5 +70,9 @@ function viewLocation(){
         color: #f0d5b5;
         font-size: 14px;
     }
+    .imgBox .cdn, .imgBox .placeholder, .imgBox .cdn, .imgBox .placeholder{
+        width: 20px;
+        height: 20px;
+    }
 }
 </style>
