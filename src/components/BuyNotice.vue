@@ -5,7 +5,7 @@
             <text class="t_title">有效期</text>
             <view class="left">
                 <view class="round"></view>
-                <view>购买后{{data.effective_time}}天有效期</view>
+                <view>{{data.use_date}}</view>
             </view>
         </view>
         <view class="date">
@@ -20,26 +20,36 @@
             <view class="left">
                 <view class="round"></view>
                 <!-- <view>除酒水饮料外全场通用</view> -->
-                <view>{{data.suit_range}}</view>
+                <view>{{data.appointment}}</view>
             </view>
             
         </view>
         <view class="date">
             <text class="t_title">其他规则</text>
-            <!-- <li v-for="item in menu" :key="item.id" class="li" >
-                <view class="left">
-                    <view  class="round_two"></view>
-                    <text>{{ item.text }}</text>
-                </view>
-            </li> -->
-            <rich-text :nodes="data.rules" class="desc"></rich-text>
+            <view class="left" v-if="private_room">
+                <view class="round"></view>
+                <view>{{data.private_room}}</view>
+            </view>
+            <view class="left" v-if="superimposed_discounts">
+                <view class="round"></view>
+                <view>{{data.superimposed_discounts}}</view>
+            </view>
+            <view class="left" v-if="free_pack">
+                <view class="round"></view>
+                <view>{{data.free_pack}}</view>
+            </view>
+            <!-- <view>{{data.private_room}}</view> -->
+            <!-- <rich-text :nodes="data.rules" class="desc"></rich-text> -->
         </view>
         <view class="date">
             <text class="t_title">其他说明</text>
-            <view class="left">
+            <view class="left" v-if="description_rich_text">
                 <view class="round"></view>
                 <!-- <view>除酒水饮料外全场通用</view> -->
-                <view>其他说明</view>
+                <view v-for="item in data.description_rich_text">
+                    <view>{{item }}</view>
+                </view>
+                <!-- <view>{{ data.description_rich_text }}</view> -->
             </view>
             
         </view>
@@ -61,10 +71,15 @@ const props = defineProps({
     data: {
         type: Object,
         default: {
-            effective_time: '',
-            use_time: '',
+            use_date: '',
             suit_range: '',
-            rules: '',
+            use_time: '',
+            appointment:'',
+            private_room:'',
+            superimposed_discounts:'',
+            free_pack:'',
+            description_rich_text:'',
+
         },
     }
 });

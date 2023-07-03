@@ -6,6 +6,7 @@
             <nut-countdown :end-time="getTimeTemp(item.end_time)" ></nut-countdown>
         </view>
     </cdn-img>
+
     <view class="rightCon">
         <nut-ellipsis :content="item.title" :rows="2" class="gName"></nut-ellipsis>
         <view class="time vcenter">

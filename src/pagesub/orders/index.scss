@@ -47,25 +47,21 @@
         .price_t{
             position: relative;
         }
-        .money{
+        .time{
             display: flex;
             align-items: center;
-            flex-direction: row;
-            align-self: flex-end;
-            position: absolute;
-            right: 0;
-            top: 50px;
-        .price{
+            justify-content: space-between;
+        .order_time{
             font-size: 13px;
             color: #333333;
             font-weight: 400;
-            margin-left: 12px;
+            
+            }
             .span{
                 display: inline-block;
                 color: #FE582A;
-                font-size: 11px;
+                font-size: 18px;
                 font-weight: 400;
-            }
             }
         .number{
             color: #999999;
@@ -129,8 +125,34 @@
         font-size: 14px;
         color: #222222;
         font-weight: 700;
+        width: 222px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
     }
+
+    .money{
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        align-self: flex-end;
+        position: absolute;
+        right: 0;
+        top: 20px;
+        .prices{
+            font-size: 15px;
+            color: #333333;
+            font-weight: 600;
+            }
+        .number{
+            color: #999999;
+
+        }
+    }
+
+
+
     .info{
         flex: 1;
         height: 71px;
@@ -152,7 +174,7 @@
         justify-content: flex-end;
         .btn{
             height: 27px;
-            background-color: #FE3234;
+            background-color: #FD6A29;
             color: #FFFFFF;
             margin: 0 5px;
             padding: 0 8px;

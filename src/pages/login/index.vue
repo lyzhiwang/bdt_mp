@@ -4,18 +4,18 @@
         <cdn-img :src="config.sysinfo.logo" class="logo-box" mode="aspectFit"/>
         <view class="row"><text class="oemName">{{config.sysinfo.name}}</text></view>
     </template>
-    <view class="power" v-if="step===2">
+    <!-- <view class="power" v-if="step===2">
         <view class="g6">申请获取您的以下权限</view>
         <view class="desc">获取您的手机号信息，仅限于参与活动和下单时信息使用</view>
-    </view>
+    </view> -->
     <nut-button type="primary" v-if="step===1" @click="ttLogin" class="btn auth">
-        <view class="fcenter">
+        <view class="fcenter" >
             <IconFont font-class-name="iconfont" class-prefix="icon" name="douyin"/>&nbsp;
-            <text>抖音一键登录</text>
+            <text >抖音一键登录</text>
         </view>
     </nut-button>
     <!-- 获取微信手机号 -->
-    <nut-button type="primary" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="btn auth" v-else-if="step===2">一键获取手机号</nut-button>
+    <!-- <nut-button type="primary" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="btn auth" v-else-if="step===2">一键获取手机号</nut-button> -->
     <!-- 返回 -->
     <!-- <nut-button plain type="primary" @click="back" class="btn back">取消登录</nut-button> -->
     <view class="vcenter" v-if="step===1">
@@ -66,56 +66,57 @@ export default {
                 ? getUserProfile({force: true, ...parame}) 
                 : getUserInfo({withCredentials: true, ...parame});
         }
-
+    
         function ttLogin(){
             if(!state.protocol) return showToast({ title: '请阅读并同意《用户协议》和《隐私政策》', icon: 'none', duration: 3000})
             showLoading({title: '加载中', mask: true});
             // 先登录
             login({
                 success : loginRes => {
-                    console.log(111, loginRes)
-                    login_data.login_code = loginRes.code
+                    login_data.code = loginRes.code
+                    login_data.anonymous_code = loginRes.anonymousCode
                 },
                 fail: hideLoading,
             })
             // 然后获取用户头像昵称
             userInfoFun({
                 success: infoRes => {
-                    console.log(1111, infoRes)
                     state.step = 2
-                    login_data.login_iv = infoRes.iv;
-                    login_data.login_encryptedData = infoRes.encryptedData;
+                    login_data.iv = infoRes.iv;
+                    login_data.encryptedData = infoRes.encryptedData;
                     const { nickName, avatarUrl } = infoRes.userInfo;
                     if(!user.info.avatarUrl&&!user.info.nickName){
                         user.setUserInfo({ nickName, avatarUrl });
                     }
+                    getPhoneNumber(login_data)
                 },
                 fail(){
                     showToast({ title: '获取资料失败', icon: 'none', duration: 3000})
                 },
                 complete: hideLoading,
             })
+
         }
         function getPhoneNumber(e){
-            console.log(111, e.detail)
-            // const { code, encryptedData, iv } = e.detail;
+            const { code, encryptedData, iv } = e;
             // if(!code || !encryptedData || !iv) return showToast({ title: '获取手机号失败', icon: 'none', duration: 3000})
-            // wxAuthLogin({ ...login_data, code, encryptedData, iv } ).then(res=>{
-            //     if(res.data){
-            //         const { token, id } = res.data;
-            //         user.setUserToken(token);
-            //         user.setUserInfo({id});
-            //         const url = user.beforeLoginUrl ? user.beforeLoginUrl : '/pages/ucenter/index';
-            //         const path = url.split("?")[0]
-            //         if(path !== '/pages/ucenter/index') user.getUserInfo()
-            //         if(['/pages/home/index','/pages/ucenter/index','/pages/task/index'].indexOf(path)>-1){
-            //             switchTab({ url })
-            //         }else{
-            //             redirectTo({ url })
-            //         }
-            //     }
-            // })
+            wxAuthLogin({ ...login_data } ).then(res=>{
+                if(res.data){
+                    const { token, id } = res.data;
+                    user.setUserToken(token);
+                    user.setUserInfo({id});
+                    const url = user.beforeLoginUrl ? user.beforeLoginUrl : '/pages/ucenter/index';
+                    const path = url.split("?")[0]
+                    if(path !== '/pages/ucenter/index') user.getUserInfo()
+                    if(['/pages/home/index','/pages/ucenter/index','/pages/task/index'].indexOf(path)>-1){
+                        switchTab({ url })
+                    }else{
+                        redirectTo({ url })
+                    }
+                }
+            })
         }
+      
         function viewProtocol(){
             state.popup = true;
             state.pop_tit = '用户协议';

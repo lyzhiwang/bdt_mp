@@ -153,6 +153,7 @@
 .detailImg{
   width: 100%;
   min-height: 175px;
+  margin: 10px 0;
 }
 
 .footerBox{
@@ -264,5 +265,43 @@
 .tabBarholder{
   width: 100%;
   height: 50px;
+}
+
+.evaluate{
+    padding: 16px 10px 5px;
+    .list{
+        padding: 9px 0;
+    }
+    .user{
+        display: flex;
+        align-items: center;
+        margin-bottom: 7px;
+        .avatar{
+            width: 33px;
+            height: 33px;
+            margin-right: 5px;
+        }
+        .name{
+            font-size: 12px;
+            color: #333;
+        }
+    }
+    .userShare{
+        margin: 6px -4px 9px;
+    }
+    .userShareImg{
+        width: 78px;
+        height: 78px;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 0 4px;
+    }
+    .time{
+        font-size: 11px;
+        color: #999;
+    }
+    .nut-ellipsis__text{
+        color: #333!important;
+    }
 }
 }

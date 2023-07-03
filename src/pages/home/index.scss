@@ -94,7 +94,14 @@
       .g-content{
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
+        .title{
+            font-size: 15px;
+            font-weight: 400;
+            color: #212121;
+            line-height: 20px;
+            letter-spacing: 0.9px;
+        }
         .g-info{
           display: flex;
           align-items: center;

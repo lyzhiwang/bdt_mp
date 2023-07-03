@@ -126,7 +126,7 @@ import { useLoad, requestPayment, showToast, setClipboardData } from '@tarojs/ta
 import { Success, Right } from '@nutui/icons-vue-taro';
 import QR from '@/utils/qrcode2.js';
 import { storeToRefs } from "pinia";
-// import { bundleDetail, getOrderShow, } from "@/api/index";
+
 import { firstLogin, goToSub } from '@/utils/nav'
 import { redirectTo } from '@/router'
 import { getTimeTemp } from '@/utils/helper';
@@ -137,7 +137,7 @@ navigationBarTitleText: '订单详情',
 })
 const Instructions = ref({effective_time:'365',use_time:'全天',suit_range:'123',})   //使用须知
 const orderInfo = ref({status:4})    // 订单详情
-const order_id = ref(null) //单ID
+// const id = ref(null) //单ID
 const showBasic = ref(false)
 const number =ref({number:'2234 5678 2234 '},{number:'2234 5678 2234 '})
 const bundleInfo = ref({    //团购详情
@@ -151,7 +151,7 @@ const bundleInfo = ref({    //团购详情
     ],
     detail: '',
 })
-const activity_id = ref(null)  //适应门店id
+const id = ref(null)  //适应门店id
 const state = reactive({
     end: 0, // Date.now() + 3600 * 1000
     start: 2,
@@ -169,7 +169,7 @@ const setClipboard = data => {
     }
 const qrCodeImg = ref("https://www.baidu.com");
 // useLoad((option) => {
-// activity_id.value = option.activity_id
+
 // order_id.value = option.order_id
 // // 套餐详情
 // bundleDetail({activity_id: option.activity_id, set_meal_id: option.meal_id}).then(res=>{
@@ -179,15 +179,16 @@ const qrCodeImg = ref("https://www.baidu.com");
 //         Instructions.value = { effective_time, use_time, suit_range, rules }
 //     }
 // })
-// getOrderShow({order_id: option.order_id}).then(res=>{
-//     if(res&&res.data){ 
-//         orderInfo.value = res.data
-//         state.end = getTimeTemp(orderInfo.value.place_order_time) + (3600 * 1000)
-//         // 核销二维码
-//         qrCodeImg.value = QR.drawImg(orderInfo.value.out_trade_no, {
-//             size: 140
-//         })
-//     }
+id.value = 1
+// getOrderShow(id).then(res=>{
+    // if(res&&res.data){ 
+    //     orderInfo.value = res.data
+    //     state.end = getTimeTemp(orderInfo.value.place_order_time) + (3600 * 1000)
+    //     // 核销二维码
+    //     qrCodeImg.value = QR.drawImg(orderInfo.value.out_trade_no, {
+    //         size: 140
+    //     })
+    // }
 // })
 // })
 

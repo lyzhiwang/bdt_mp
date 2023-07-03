@@ -13,7 +13,7 @@ import { navigateTo } from '@/router'
 axios.defaults.retry = 2
 axios.defaults.retryDelay = 1000
 
-const baseURL = (process.env.NODE_ENV === "development") ? "http://klt.zwstk.cn" : "https://api.klt.mudanma.com";
+const baseURL = (process.env.NODE_ENV === "development") ? "https://w.bdt.zwstk.cn/xcx" : "https://api.klt.mudanma.com";
 //第三方平台自定义的数据字段
 const oem_id = getExtConfigSync().oem_id;
 // 创建axios实例

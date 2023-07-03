@@ -25,26 +25,26 @@
 				</view>
 			</view>
 		</view>
-
+  
 		<!-- 菜单 -->
 		<view class="tabBox">
 			<view class="tabItem" v-for="(item, index) in tabs" :key="index" :class="{'action-tab': current===item.value}" @click="changeTab(item)">{{item.label}}</view>
 		</view>
 
 		<view class="goodsList">
-			<view class="goodsItem" v-for="i in 10" @click="toDetail">
-				<cdn-img class="goodsImg" src="/static/img/home/hot-title.png" mode="aspectFill" lazyLoad/>
+			<view class="goodsItem" v-for="(item, index) in List" @click="goToSub(`detail/index?id=${item.id}`)">
+				<cdn-img class="goodsImg" :src=" item.image " mode="aspectFill" lazyLoad/>
 				<view class="g-content">
-					<nut-ellipsis 
-					content="正宗四川豌豆小面唇齿留香正宗四川豌豆小面唇齿留香正宗四川豌豆小面唇齿留香……" 
+					<!-- <nut-ellipsis 
+					content='123336555' 
 					direction="end"
 					class="titleBox" 
-					rows="3"></nut-ellipsis>
-
+					rows="3"></nut-ellipsis> -->
+                        <view class="title">{{ item.product_name }}</view>
 					<view class="g-info">
 						<view class="price-Box">
-							<view class="price">￥10.99 <text class="discount">8.5折</text></view>
-							<view class="old-price">￥16.00</view>
+							<view class="price">{{item.sku.actual_amount }} <text class="discount">{{item.sku.discount}}折</text></view>
+							<view class="old-price">￥{{ item.sku.origin_amount }}</view>
 						</view>
 
 						<view class="btn">立即购买</view>
@@ -67,13 +67,15 @@ import GoodsBox from "../../components/GoodsBox.vue";
 import { useDidShow, useLoad, useReachBottom } from '@tarojs/taro'
 import { useUserStore, useConfigStore } from "@/stores";
 import { navigateTo } from "@/router/index";
+import { goToSub } from '@/utils/nav'
+import { getGoodList } from "@/api/index";
 import "./index.scss";
 export default {
 	name: 'Index',
 	components: { CustomTabBar },
 	setup() {
 		const user = useUserStore()
-    const config = useConfigStore()
+        const config = useConfigStore()
 		const state = reactive({})
 		useLoad(async(query) => {
 			const url = decodeURIComponent(query.q)
@@ -97,7 +99,20 @@ export default {
 		const meta = {}
 
 		const goodsList = ref([])
-
+        const List = ref([])
+        //商品列表
+        const page = ref(1)
+        let paging = { page: 1, size: 20}
+                paging = {page: page.value, size: 20}
+                // paging.type = state.tab4value==0 ? null : state.tab4value
+                getGoodList(paging).then(res=>{
+                    // if(res.meta){
+                    //     last_page = res.meta.last_page
+                    // }
+                    if(res.data){
+                        List.value = List.value.concat(res.data)
+                    }
+                })
 		useReachBottom(()=>{
 				console.log('触发底部')
 				// const str = (user.mode===1 ? 'star' : 'talent')
@@ -110,6 +125,7 @@ export default {
 		})
 
 		const getList=()=>{
+          
 			cashLog(params.value).then(res=>{
 				if(res.meta){
 					meta = res.meta
@@ -128,12 +144,12 @@ export default {
 			current.value = item.value
 		}
 
-		const toDetail = ()=>{
-			navigateTo({url: '/pagesub/detail/index'})
-		}
+		// const toDetail = ()=>{
+		// 	navigateTo({url: `/pagesub/detail/index?id=${l.order_id}`})
+		// }
 
 		return {
-			...toRefs(state),imgsList, tabs, current, changeTab, toDetail, listStatus
+			...toRefs(state),imgsList, tabs, current,goToSub, changeTab, listStatus,List
 		}
 	},
 	onShareAppMessage(res){ // 点击右上角转发

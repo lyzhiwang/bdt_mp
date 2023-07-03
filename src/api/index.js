@@ -6,7 +6,7 @@ export function wxAuthLogin(data){
     headers: {
       loading: true
     },
-    url: '/login',
+    url: '/user/login',
     method: 'post',
     data
   })
@@ -20,6 +20,17 @@ export function queryUserInfo(params){
     params
   })
 }
+// 微信登录
+export function wxPhone(data){
+    return request({
+      headers: {
+        loading: true
+      },
+      url: '/user/phone',
+      method: 'post',
+      data
+    })
+  }
 
 // 获取七牛 token
 export function QiniuToken(params) {
@@ -51,6 +62,7 @@ export function updateProfile(data) {
   })
 }
 
+
 // 创建订单
 export function createOrder(data) {
 	return request({
@@ -61,4 +73,35 @@ export function createOrder(data) {
 	  method: 'post',
     data
 	})
+}
+// 门店列表
+export function ShopList(params) {
+    return request({
+        url: '/shop',
+        method: 'get',
+        params
+    })
+}
+// 门店资质
+export function ShopAptitude(params) {
+    return request({
+        url: '/shop/license',
+        method: 'get',
+        params
+    })
+}
+// 商品列表
+export function getGoodList(params) {
+    return request({
+        url: '/product',
+        method: 'get',
+        params
+    })
+}
+// 订单详情
+export function getGoodListShow(data) {
+    return request({
+        url: `/product/${data.id}`,
+        method: 'get',
+    })
 }

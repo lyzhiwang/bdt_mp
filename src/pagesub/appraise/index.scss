@@ -1,0 +1,45 @@
+.appraise{
+    padding-top: 10px;
+    .assess{
+        width: 355px;
+        // min-height: 198px;
+        font-size: 14px;
+        margin: 0 auto 8px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        padding: 13px 10px 11px 12px;
+        color: #333333;
+    }
+    .nut-textarea {
+        background: #F8F8F8;
+        padding: 10px 15px;
+        margin-top: 10px;
+    }
+    .img{
+        margin-top: 10px;
+    }
+    .attestation {
+        width: 355px;
+        height: 44px;
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: flex-end;
+        margin-bottom: 20px;
+        // margin: auto 10px 20px 10px;
+        .submitBtn{
+            width: 100%;
+            border-radius: 10px;
+        }
+        .afetchss{
+            background-color: #FE3234;
+        }
+    
+        .fetch {
+            background-color: #FE3234;
+            opacity:0.6;
+        }
+    }
+}

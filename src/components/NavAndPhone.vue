@@ -1,6 +1,6 @@
 <template>
 <view class="navAndPhone flex">
-    <view class="item" @click="viewLocation">
+    <view class="item" @click="goToSub(`credentials/index?shop_id=${shop_id}`)">
         <view class="fcenter">
             <cdn-img src="/static/img/icon/aptitude.png" class="icon" mode="aspectFit"/>
         </view>
@@ -18,6 +18,7 @@
 <script setup>
 import { IconFont } from '@nutui/icons-vue-taro';
 import { openLocation, makePhoneCall } from '@tarojs/taro'
+import { goToSub } from '@/utils/nav'
 
 const props = defineProps({
     phone: {
@@ -30,8 +31,13 @@ const props = defineProps({
             lat: '',
             lng: '',
         }
+    },
+    shop_id:{
+        type:String,
+        default: '',
     }
 });
+// console.log(shop_id,'shop_id')
 
 function viewLocation(){
     const { lat, lng } = props.address

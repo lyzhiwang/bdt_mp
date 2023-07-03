@@ -3,55 +3,56 @@
     <view class="between topstate" >
         <view class="left">
             <view class="h3 title">适用门店</view>
+            <!-- {{ shopInfo }} -->
         </view>
         <view class="s_store fcenter" @click="goToSub('seller/store')">全部门店<Right color="#666" /></view>
     </view>
-    <view class="BoxCard">
-        <cdn-img src="src"  class="pic" mode="aspectFill"/>  
+    <view class="BoxCard" v-if="shopInfo">
+        <cdn-img :src="shopInfo.image"  class="pic" mode="aspectFill"/>  
         <view class="info">
-            <view class="range ells">重庆小面（纱厂路店）</view>
-            <view class="location">
+            <view class="range ells">{{ shopInfo.name}}</view>
+            <view class="location" >
                 <Location2  color="#e6c69f"/>
-                <text class="ells address">西工区纱厂路245号1幢7层701</text>
+                <text class="ells address">{{shopInfo.address}}</text>
             </view>
         </view>
-        <NavAndPhone />
+        <NavAndPhone :phone="shopInfo.contact_phone" :shop_id="shopInfo.id"/>
     </view>
 </view>
 </template>
 
 <script setup>
-import { ref, onBeforeMount  } from 'vue'
+import { ref,   } from 'vue'
 import { Location2, Right } from '@nutui/icons-vue-taro';
 import { goToSub } from '@/utils/nav'
-// import { shopList } from '@/api/index'
+import { ShopList } from '@/api/index'
 import { useOrderStore } from '@/stores'
 
 const props = defineProps({
-    activity_id: {
-        type: [Number,String],
+    product_id: {
+        type: Number,
         require: true,
     }
 });
 
 const order = useOrderStore()
 const shopInfo = ref(null)
-
-onBeforeMount(()=>{
+// let paging = { page: 1, size: 20}
     // 适用门店
-    // shopList(props.activity_id, { page: 1,size: 999}).then(res=>{
-    //     if(res&&res.data){ 
-    //         if(res.data.length>0){
-    //             shopInfo.value = {
-    //                 ...res.data[0],
-    //                 shopLen: res.data.length,
-    //                 // store_id: props.store_id,
-    //             }
-    //             order.setShopList(res.data)
-    //         }
-    //     }
-    // })
-})
+    ShopList({product_id:props.product_id,  page: 1, size: 1}).then(res=>{
+        if(res&&res.data){ 
+            if(res.data.length>0){
+                shopInfo.value = {
+                    ...res.data[0],
+                    shopLen: res.data.length,
+                    // store_id: props.store_id,
+                }
+                  console.log(shopInfo.value)
+                order.setShopList(res.data)
+            }
+        }
+    })
+
 </script>
 
 <style lang="scss">

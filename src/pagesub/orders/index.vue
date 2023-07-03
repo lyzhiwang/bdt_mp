@@ -16,13 +16,20 @@
                             <cdn-img src="src"  class="pic" mode="aspectFill" lazyLoad/> 
                             <view class="info">
                                 <view class="s_title">{{ l.title }}</view>
-                            </view>
-                            <view class="money">
-                                <view class="price">共1件</view>
-                                <view class="price">小计<span class="span">￥10.99</span></view>
+                                <view class="money">
+                                    <view class="prices">￥10.99</view>
+                                    <view class="number">x1</view>
+                                </view>
                             </view>
                         </view>
+                        <view class="time">
+                                <view class="order_time">订单时间：2022-12-02   14:20:18</view>
+                                <view class="price">合计<span class="span">￥10.99</span></view>
+                        </view>
                     </view>
+                </view>
+                <view class="bottom">
+                    <view  class="btn fcenter" @click="goToSub('appraise/index')">去评价</view>
                 </view>
             </view>
             </template>
@@ -33,9 +40,9 @@
     
 <script setup>
 import { ref, reactive } from 'vue'
-import { useReachBottom,} from '@tarojs/taro'
 // import { Right } from '@nutui/icons-vue-taro';
-// import { getOrder, bundleDetail } from "@/api/index";
+import { useReachBottom, useLoad } from '@tarojs/taro'
+// import { getOrder } from "@/api/index";
 // import { useOrderStore } from '@/stores'
 import { goToSub } from '@/utils/nav'
 import "./index.scss";
@@ -60,28 +67,28 @@ const list = ref([
 const listStatus = ref('loadmore')
 const page = ref(1)
 let last_page = 1
-let paging = { page: 1, size: 20, type: null}
+let paging = { page: 1, size: 20}
 
-// function queryList(){
-//     paging = {page: page.value, size: 20}
-//     paging.type = state.tab4value==0 ? null : state.tab4value
-//     getOrder(paging).then(res=>{
-//         if(res.meta){
-//             last_page = res.meta.last_page
-//         }
-//         if(res.data){
-//             list.value = list.value.concat(res.data)
-//         }
-//     })
-// }
+function queryList(){
+    paging = {page: page.value, size: 20}
+    paging.type = state.tab4value==0 ? null : state.tab4value
+    // getOrder(paging).then(res=>{
+    //     if(res.meta){
+    //         last_page = res.meta.last_page
+    //     }
+    //     if(res.data){
+    //         list.value = list.value.concat(res.data)
+    //     }
+    // })
+}
 
-// useLoad((option) => {
-//     if(option&&option.type){
-//         paging.type = option.type
-//         state.tab4value = Number(option.type)
-//     }
-//     queryList()
-// })
+useLoad((option) => {
+    if(option&&option.type){
+        // paging.type = option.type
+        // state.tab4value = Number(option.type)
+    }
+    queryList()
+})
 
 // function changeTab(tab){
 //     const id = Number(tab.paneKey)

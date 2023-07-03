@@ -14,7 +14,15 @@ export default defineAppConfig({
     'pages/home/index',
     'pages/ucenter/index',
     'pages/login/index',
+    // "pages/index/index",
+    // 提单页
+    // "ext://microapp-trade-plugin/order-confirm",
+    // // 退款申请页配置
+    // "ext://microapp-trade-plugin/refund-apply",
+    // // 退款详情页
+    // "ext://microapp-trade-plugin/refund-detail"
   ],
+
   subpackages: [
     {
       root: 'pagesub',
@@ -28,6 +36,7 @@ export default defineAppConfig({
         'payment/index',
         'payment/notice',
         'seller/store',
+        'appraise/index',
       ]
     },
   ],
