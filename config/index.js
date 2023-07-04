@@ -33,11 +33,15 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: ['taro-plugin-pinia','@tarojs/plugin-html'],
+  plugins: ['taro-plugin-pinia','@tarojs/plugin-html', path.resolve(__dirname, "../util/modifyAssets")],
   defineConstants: {
   },
   copy: {
     patterns: [
+      {
+        from: "src/tt/package.json",
+        to: "dist/package.json",
+      },
     ],
     options: {
     }

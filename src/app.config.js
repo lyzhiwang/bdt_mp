@@ -54,4 +54,11 @@ export default defineAppConfig({
         "desc" : "为了更好的为您提供服务"
     }
   },
+  plugins:{
+    "microapp-trade-plugin": {
+      "version": "1.1.2",
+      "provider": 'wxidxxxxxxxxxxxxxxxx',
+      // "isDynamic": true
+    }
+  }
 })

@@ -55,6 +55,17 @@
       <nut-divider v-else-if="listStatus=='nomore'">没有更多了</nut-divider>
 		</view>
 	</view>
+	<!-- goods-id="7248881168261679104" -->
+	<!-- <pay-button 
+		:mode="2"
+		:goods-type="1" 
+		goods-id="7248802261437057076"
+		@getgoodsinfo="getGoodsInfo"
+		@placeorder="userLogin"
+		@pay="payHandle"
+		@error="errHandle"
+	/> -->
+	<zijie-pay-button goodsId="7248802261437057076"></zijie-pay-button>
 	<!-- 底部TabBar -->
 	<CustomTabBar/>
 </SafeAreaView>
@@ -148,8 +159,52 @@ export default {
 		// 	navigateTo({url: `/pagesub/detail/index?id=${l.order_id}`})
 		// }
 
+		function getGoodsInfo(e){
+			const asyncFun = new Promise(resolve => {
+				resolve({
+					minLimits: 1,
+					maxLimits: 2,
+					dateRule: '周一至周日可用',
+					goodsLabels: [
+						{type: 'EXPIRED_RETURNS'}, // 过期退
+						{type: 'REFUND_ANYTIME'}, // 随时退
+						{type: 'BOOK_IN_ADVANCE', value: 2} // 提前2日预约
+					],
+					validation: {
+						phoneNumber: {
+							required: true  // 手机号是否必填
+						}
+					}
+				});
+			})
+			console.log(2222, e.detail, asyncFun)
+			return asyncFun
+		}
+		function userLogin(e){
+			const { goodsId , goodsType } = e.detail
+			console.log(1111, goodsId, goodsType)
+			return new Promise((resolve, reject) => {
+				resolve();
+				// tt.login({
+				// 	success() {
+				// 		// 用户登录成功并获取信息，则调用 resolve 函数，跳转至提单页
+				// 		resolve();
+				// 	},
+				// 	fail() {
+				// 		// 用户登录失败，则跳转提单页失败
+				// 		reject();
+				// 	}
+				// });
+			});
+		}
+		function errHandle(e){
+			console.log(3333, e.detail)
+		}
+		function payHandle(e){
+			console.log(444, e.detail)
+		}
 		return {
-			...toRefs(state),imgsList, tabs, current,goToSub, changeTab, listStatus,List
+			...toRefs(state),imgsList, tabs, current,goToSub, changeTab, listStatus,List, getGoodsInfo, userLogin, errHandle, payHandle
 		}
 	},
 	onShareAppMessage(res){ // 点击右上角转发
