@@ -61,18 +61,8 @@ Component({
         });
       }
     },
-    getPhoneNumber({ params, success, fail }) {
-        const { iv, encryptedData } = params;
-        // ...
-        // 开发者服务端解密 encryptedData，得到手机号
-        // ...
-        const result = {
-            phoneNumber: '13580006666',
-        }
-        console.log(888888888888888888)
-        // 回调前端模板
-        success(result)
-    },
+
+
     onPay(options) {
       const { status, orderId, outOrderNo, result } = options.detail;
       console.log("onPay", status, orderId, outOrderNo, result);

@@ -8,8 +8,6 @@
   bind:placeorder="userLogin"
   bind:pay="onPay"
   bind:error="onError"
-  open-type="getPhoneNumber" 
-  bind:getphonenumber="getPhoneNumber"
 />
 
 <!-- 申请退款 -->

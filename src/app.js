@@ -1,10 +1,12 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { setGlobalDataPlugin } from '@tarojs/taro'
 import CdnImg from "@/components/CdnImg";
 import './router/guard'
 import './app.scss'
 import './assets/font/iconfont.css';
 import { useConfigStore } from '@/stores'
+import { getPhone } from "@/api/index.js";
 
 const cdn = 'https://zwklt.zwwltkl.com';
 
@@ -29,26 +31,26 @@ const App = createApp({
   },
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
 
+  
+})
 
-   /**
-     * desc: 获取手机号
-     * params：加密数据
-     * success：成功回调
-     * fail： 失败回调
-     */
-   getPhoneNumber({ params, success, fail }) {
-    const { iv, encryptedData } = params;
-    console.log(iv, encryptedData);
+App.use(setGlobalDataPlugin, {
+  getPhoneNumber(e) {
+    console.log(123123213, e)
+    // const params = {
+
+    // }
+    
+    
     // ...
     // 开发者服务端解密 encryptedData，得到手机号
     // ...
-    console.log(888888888888888888)
-    const result = {
-      phoneNumber: "1755555599",
-    };
-    // 回调交易模版
-    success(result);
-  },
+    // const result = {
+    //   phoneNumber: "1755555599",
+    // };
+    // // 回调交易模版
+    // success(result);
+  }
 })
 
 App.use(createPinia())

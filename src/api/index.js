@@ -112,3 +112,12 @@ export function getGoods(data) {
         method: 'get',
     })
 }
+
+// 获取用户手机号
+export function getPhone(data) {
+  return request({
+    url: '/user/phone',
+    method: 'post',
+    data
+  })
+}
