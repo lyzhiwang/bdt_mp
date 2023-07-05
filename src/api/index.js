@@ -105,3 +105,10 @@ export function getGoodListShow(data) {
         method: 'get',
     })
 }
+// 商品信息
+export function getGoods(data) {
+    return request({
+        url: `/product_info/${data.id}`,
+        method: 'get',
+    })
+}

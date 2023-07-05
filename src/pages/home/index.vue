@@ -48,6 +48,7 @@
 						</view>
 
 						<view class="btn">立即购买</view>
+                        
 					</view>
 				</view>
 			</view>
@@ -65,7 +66,7 @@
 		@pay="payHandle"
 		@error="errHandle"
 	/> -->
-	<zijie-pay-button goodsId="7248802261437057076"></zijie-pay-button>
+	<!-- <zijie-pay-button goodsId="7248802261437057076"></zijie-pay-button> -->
 	<!-- 底部TabBar -->
 	<CustomTabBar/>
 </SafeAreaView>

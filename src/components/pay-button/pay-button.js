@@ -1,3 +1,5 @@
+
+import { getGoods } from "@/api/index";
 Component({
   properties: {
     mode: Number,
@@ -5,17 +7,28 @@ Component({
       type: String,
       value: "",
     },
+    id:{
+        type:String,
+        value:"",
+    },
   },
-  data: {},
+
+  data() {
+    return{
+        // GoodsList:""
+    }
+  },
 
   methods: {
-    getGoodsInfo(goodsId) {
+    getGoodsInfo(goodsId,id) {
       return new Promise((resolve) => {
-        console.log("user goodsId", goodsId);
-        resolve({
-					minLimits: 1,
-					maxLimits: 2,
-					dateRule: '周一至周日可用',
+        console.log("user goodsId222222",id, goodsId);
+        getGoods({id:goodsId.currentTarget.id}).then(res=>{
+           console.log(res.data,'res11111111')
+                resolve({
+                    goodsName:res.data.product_name,
+					minLimits: res.data.min_limits,
+                    currentPrice:res.data.current_price,
 					goodsLabels: [
 						{type: 'EXPIRED_RETURNS'}, // 过期退
 						{type: 'REFUND_ANYTIME'}, // 随时退
@@ -23,25 +36,13 @@ Component({
 					],
 					validation: {
 						phoneNumber: {
-							required: true  // 手机号是否必填
+							required: false  // 手机号是否必填
 						}
 					}
 				});
-        // resolve({
-        //   currentPrice: 1,
-        //   minLimits: 2,
-        //   maxLimits: 10,
-        //   dateRule: "",
-        //   goodsName: "循礼门M+丨【释集烤肉】99元  原价206.4元超值套餐",
-        //   goodsPhoto:
-        //     "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.ibaotu.com%2Fgif%2F19%2F48%2F47%2F76Z888piCd6W.gif%21fwpaa50%2Ffw%2F700&refer=http%3A%2F%2Fpic.ibaotu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644654365&t=5fc9b5fdad0a16264a9a9c09c14b3af9",
-        //   goodsLabels: [
-        //     { type: "REFUND_ANYTIME" },
-        //     { type: "BOOK_IN_ADVANCE", value: 98 },
-        //   ],
-        //   extra: { test: 123 },
-        // });
-      });
+        })
+     
+      })
     },
 
     onError(e) {
@@ -60,11 +61,41 @@ Component({
         });
       }
     },
-
+    getPhoneNumber({ params, success, fail }) {
+        const { iv, encryptedData } = params;
+        // ...
+        // 开发者服务端解密 encryptedData，得到手机号
+        // ...
+        const result = {
+            phoneNumber: '13580006666',
+        }
+        console.log(888888888888888888)
+        // 回调前端模板
+        success(result)
+    },
     onPay(options) {
       const { status, orderId, outOrderNo, result } = options.detail;
       console.log("onPay", status, orderId, outOrderNo, result);
       tt.navigateBack();
+      tt.continueToPay({
+        orderId: "orderId", // 内部订单号
+        outOrderNo: "outOrderNo", // 外部订单号 2个订单号必填一个
+        success: (res) => {
+          const { orderId, outOrderNo } = res;
+          console.log("success res", res);
+          console.log("orderId", orderId, "outOrderNo", outOrderNo);
+        },
+        fail: (res) => {
+          const { orderId, outOrderNo, errNo, errMsg, errLogId } = res;
+          if (errLogId) {
+            console.log("查询订单信息失败", errNo, errMsg, errLogId);
+          }
+          if (orderId || outOrderNo) {
+            console.log("支付失败", errNo, errMsg, orderId, outOrderNo);
+          }
+        },
+      });
+      
     },
 
     handleRefund(event) {
@@ -82,33 +113,18 @@ Component({
       console.log("place order", event);
       return new Promise((resolve) => {
         resolve();
-        // tt.login({
-        //   success() {
-        //     tt.getUserInfo({
-        //       success(res) {
-        //         console.log("login success", res);
-        //         resolve();
-        //       },
-        //       fail(res) {
-        //         console.log("fail", res);
-        //         tt.openSetting({
-        //           success: (res) => {
-        //             console.log("打开设置页面成功: ", res.errMsg);
-        //           },
-        //           fail: (res) => {
-        //             console.log("打开设置页面失败: ", res.errMsg);
-        //           },
-        //           complete: (res) => {
-        //             console.log("接口已调用: ", res.errMsg);
-        //           },
-        //         });
-        //       },
-        //     });
-        //   },
-        //   // setTimeout(() => {
-        //   //   resolve();
-        //   // }, 0);
-        // });
+        tt.login({
+            success() {
+                // 用户登录成功并获取信息，则调用 resolve 函数，跳转至提单页
+                console.log(555555)
+                resolve();
+            },
+            fail() {
+                // 用户登录失败，则跳转提单页失败
+                console.log(66666666)
+                reject();
+            }
+        });
       });
     },
   },

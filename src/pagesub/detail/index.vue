@@ -132,8 +132,8 @@
           <view open-type="share">分享</view>
         </view>
       </view>
-      <view class="t-btn" @click="goToSub(`payment/index?id=${item.id}`)">立即抢购</view>
-      <!-- <pay-button :goodsId="135" @click="goToSub(`payment/index?id=${item.id}`)"></pay-button> -->
+      <!-- <view class="t-btn" @click="goToSub(`payment/index?id=${item.id}`)">立即抢购</view> -->
+      <zijie-pay-button :goodsId=item.product_id :id=item.id></zijie-pay-button>
     </SafeAreaView>
   </view>
 </SafeAreaView>

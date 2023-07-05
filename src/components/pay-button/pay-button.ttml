@@ -2,11 +2,14 @@
 <pay-button
   mode="{{2}}"
   goods-id="{{goodsId}}"
+  id="{{id}}"
   goods-type="{{1}}"
   bind:getgoodsinfo="getGoodsInfo"
   bind:placeorder="userLogin"
   bind:pay="onPay"
   bind:error="onError"
+  open-type="getPhoneNumber" 
+  bind:getphonenumber="getPhoneNumber"
 />
 
 <!-- 申请退款 -->
@@ -18,7 +21,7 @@
   order-status="{{1}}"
   bind:getgoodsinfo="getGoodsInfo"
   bind:placeorder="userLogin"
-  bind:pay="onPay"
+  bind:pay="onPay
   bind:refund="handleRefund"
   bind:error="onError"
 /> -->
