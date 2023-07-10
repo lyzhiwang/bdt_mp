@@ -2,17 +2,15 @@
      <view class="tg_package"> 
         <view class="title">团购套餐</view>
         <view class="package">超值套餐组合</view>
-        <view class="list"> 
-            <li v-for="item in menu" :key="item.id" class="li" >
-                <view class="left">
-                    <view  class="rounds"></view>
-                    <text>{{ item.name }}</text>
-                    <text> （{{ item.number }}份）</text>
+        <view  v-for="items in menu">
+            <view class="">{{ items.group_name }}</view>
+            <view v-for="detail in items.item_list" class="item">
+                <view class="leftBox" >
+                    <view class="circle"></view>
+                    <view class="title" >{{ detail.name }}<text class="dw">({{detail.count}}{{ detail.unit}})</text></view>
                 </view>
-                <view class="right"> 
-                    <text class="money"> ￥{{ item.money }}</text>
-                </view>
-            </li>
+                <view class="price">¥{{ detail.price }}</view>
+            </view>
         </view>
     </view>
 </template>
@@ -33,6 +31,28 @@ const props = defineProps({
     border-radius: 10px;
     padding: 12px 10px 13px;
     flex-direction: column;
+    .item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #333;
+  line-height: 20px;
+  .leftBox{
+    display: flex;
+    align-items: center;
+    .circle{
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #000000;
+      margin-right: 5px;
+    }
+    .dw{
+      color: #999999;
+    }
+  }
+}
     .title{
     font-size: 14px;
     color: #000000;

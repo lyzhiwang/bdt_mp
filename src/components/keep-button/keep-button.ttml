@@ -1,0 +1,7 @@
+
+
+<pay-button
+  order-id="{{orderId}}" 
+  bind:pay="onContinutePay"
+  bind:error="onError"
+ />

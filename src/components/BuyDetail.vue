@@ -37,6 +37,7 @@ const props = defineProps({
 
 const order = useOrderStore()
 const shopInfo = ref(null)
+console.log(props.product_id,'props.product_id')
 // let paging = { page: 1, size: 20}
     // 适用门店
     ShopList({product_id:props.product_id,  page: 1, size: 1}).then(res=>{

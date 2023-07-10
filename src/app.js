@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { setGlobalDataPlugin } from '@tarojs/taro'
+import { setGlobalDataPlugin,login,hideLoading,success } from '@tarojs/taro'
 import CdnImg from "@/components/CdnImg";
 import './router/guard'
 import './app.scss'
@@ -9,6 +9,8 @@ import { useConfigStore } from '@/stores'
 import { getPhone } from "@/api/index.js";
 
 const cdn = 'https://zwklt.zwwltkl.com';
+let login_data = {}
+let code={}
 
 const App = createApp({
   onShow (options) {
@@ -35,21 +37,27 @@ const App = createApp({
 })
 
 App.use(setGlobalDataPlugin, {
-  getPhoneNumber(e) {
-    console.log(123123213, e)
-    // const params = {
-
-    // }
-    
-    
-    // ...
-    // 开发者服务端解密 encryptedData，得到手机号
-    // ...
-    // const result = {
-    //   phoneNumber: "1755555599",
-    // };
-    // // 回调交易模版
-    // success(result);
+  getPhoneNumber({ params, success }) {
+    login({
+        success : loginRes => {
+            login_data.code = loginRes.code
+            login_data.anonymous_code = loginRes.anonymousCode
+            login_data.encryptedData=params.encryptedData
+            login_data.iv=params.iv
+                // ...
+                // 开发者服务端解密 encryptedData，得到手机号
+                // ...
+            getPhone({ ...login_data }).then(res=>{
+                const result = {
+                    phoneNumber: res.data.phone,
+                }
+                // // 回调交易模版
+                success(result);
+                })
+        },
+        fail: hideLoading,
+    })
+   
   }
 })
 

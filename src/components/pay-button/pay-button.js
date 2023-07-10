@@ -11,6 +11,10 @@ Component({
         type:String,
         value:"",
     },
+    // orderId:{
+    //     type:String,
+    //     value:"",
+    // }
   },
 
   data() {
@@ -26,14 +30,14 @@ Component({
         getGoods({id:goodsId.currentTarget.id}).then(res=>{
            console.log(res.data,'res11111111')
                 resolve({
+                    
                     goodsName:res.data.product_name,
 					minLimits: res.data.min_limits,
-                    currentPrice:res.data.current_price,
-					goodsLabels: [
-						{type: 'EXPIRED_RETURNS'}, // 过期退
-						{type: 'REFUND_ANYTIME'}, // 随时退
-						{type: 'BOOK_IN_ADVANCE', value: 2} // 提前2日预约
-					],
+                    // currentPrice:res.data.current_price,
+					// goodsLabels: res.data.goods_labels,
+                        if (maxLimits) {
+                            maxLimits: res.data.maxLimits
+                        },
 					validation: {
 						phoneNumber: {
 							required: false  // 手机号是否必填
@@ -87,6 +91,20 @@ Component({
       });
       
     },
+    // bind:pay 使用示例 
+    // //继续支付
+    //     handleContinutePay(event) {
+    //         console.log(888888888)
+    //         const { status, outOrderNo, result } = event.detail;
+    //         if (status === 'success') {
+    //             const { code } = result;
+    //             if (code === 0) {
+    //                 // 继续支付成功
+    //             }
+    //         } else {
+    //             // 继续支付失败
+    //         }
+    //     },
 
     handleRefund(event) {
       const { status, result } = event.detail;

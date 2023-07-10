@@ -98,7 +98,7 @@ export function getGoodList(params) {
         params
     })
 }
-// 订单详情
+// 商品详情
 export function getGoodListShow(data) {
     return request({
         url: `/product/${data.id}`,
@@ -120,4 +120,21 @@ export function getPhone(data) {
     method: 'post',
     data
   })
+}
+// 订单列表
+export function getOrder(params) {
+    return request({
+        url: '/order',
+        method: 'get',
+        params
+    })
+}
+
+// 订单详情
+export function getOrderShow(data) {
+    return request({
+        url: `/order/${data.id}`,
+        method: 'get',
+        data
+    })
 }

@@ -15,7 +15,7 @@
         </view>
         <nut-row class="block">
             <!-- <nut-col :span="6" class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url, true)"> -->
-            <nut-col :span="6" class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url)">
+            <nut-col  class="fcenter" v-for="(item, i) in myOrder" :key="i" @click="goToSub(item.url)">
                 <cdn-img class="icon" :src="item.icon"/>
                 <view class="name">{{ item.name }}</view>
             </nut-col>
@@ -39,9 +39,9 @@
 <script setup>
 import CustomHeader from "@/components/CustomHeader"
 import { ref } from 'vue'
-import { useDidShow, makePhoneCall, showToast } from '@tarojs/taro'
+import { useDidShow, makePhoneCall, showToast, showModal } from '@tarojs/taro'
 import { useUserStore, useConfigStore } from '@/stores'
-import { goToSub } from '@/utils/nav'
+// import { goToSub } from '@/utils/nav'
 import { navigateTo } from '@/router'
 import { storeToRefs } from 'pinia';
 import { RectRight } from '@nutui/icons-vue-taro';
@@ -49,15 +49,33 @@ import "./index.scss";
 
 const now = new Date().getFullYear()
 const myOrder = [
-    {icon: '/static/img/me/unpaid.png', name: '待付款', url: 'orders/index?type=1'},
-    {icon: '/static/img/me/nouse.png', name: '待使用', url: 'orders/index?type=2'},
-    {icon: '/static/img/me/completed.png', name: '已完成', url: 'orders/index?type=3'},
-    {icon: '/static/img/me/refunded.png', name: '已退款', url: 'orders/index'},
+    {icon: '/static/img/me/refunded.png', name: '全部', url: 'orders/index'},
+    {icon: '/static/img/me/unpaid.png', name: '待付款', url: 'orders/index?status=1'},
+    {icon: '/static/img/me/nouse.png', name: '待使用', url: 'orders/index?status=2'},
+    {icon: '/static/img/me/completed.png', name: '已完成', url: 'orders/index?status=3'},
+    {icon: '/static/img/me/refunded.png', name: '已退款', url: 'orders/index?status=4'},
+    
 ]
 const other = ref([
     {icon: '/static/img/me/cs.png', name: '联系客服', url: ''},
     {icon: '/static/img/me/credential.png', name: '服务资质', url: 'credentials/index'},
 ])
+
+function goToSub(url){
+    if(!url) return CellCs()
+    if(!user.isLogin){
+        return showModal({
+            title: '提示',
+            content: '请先登录',
+            success: function (res) {
+                if (res.confirm) {
+                    navigateTo({ url: '/pages/login/index' })
+                }
+            }
+        })
+    }
+    navigateTo({ url: '/pagesub/'+url })
+}
 
 const user = useUserStore()
 const { info } = storeToRefs(user);

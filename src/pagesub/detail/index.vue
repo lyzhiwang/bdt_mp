@@ -23,7 +23,7 @@
               <view class="old_price">¥{{ item.sku.origin_amount }}</view>
               <view class="discount">{{item.sku.discount}}折</view>
             </view>
-            <view class="text-sub">随时退 | 免预约 | {{item.subtitle}}</view>
+            <view class="text-sub"> {{item.subtitle}}</view>
           </view>
 
           <view class="btn" @click="focus">
@@ -187,9 +187,9 @@
   // 关注
   const focus = ()=>{
     tt.openAwemeUserProfile({
-  success: (res) => {
-    console.log(res);
-  },
+    success: (res) => {
+        console.log(res);
+    },
 });
   }
 </script>

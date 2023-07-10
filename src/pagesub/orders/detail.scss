@@ -25,6 +25,9 @@
             color: #666666;
             font-size: 12px;
             font-weight: 400;
+            .times{
+                color: #FE582A;
+            }
         }
         .top{
             display: flex;
@@ -59,20 +62,20 @@
         align-items: center;
     }
     
-    .s_title{
-        font-size: 14px;
-        color: #222222;
-        font-weight: 700;
-    }
+    // .s_title{
+    //     font-size: 14px;
+    //     color: #222222;
+    //     font-weight: 700;
+    // }
     
     .BoxCard_info{
         flex: 1;
         height: 71px;
         .tagRow{
             flex-wrap: wrap;
-            margin: 6px 0;
+            // margin: 6px 0;
             .tag{
-                margin: 2px 17px 0 0;
+                // margin: 2px 17px 0 0;
                 font-size: 12px;
                 font-weight: 400;
                 color: #666666;

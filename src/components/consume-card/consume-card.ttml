@@ -1,0 +1,7 @@
+
+<consume-card
+  order-id="{{orderId}}"
+  bind:consume="orderChangeHandler"
+  bind:refund="handleRefund"
+  bind:applyrefund="applyRefund"
+></consume-card>

@@ -1,7 +1,7 @@
 <template>
     <SafeAreaView class="page2 orderdetail">
         <!-- 待支付 -->
-        <view class="box notice" v-if="orderInfo.status===2">
+        <view class="box notice" v-if="orderInfo.order_status==='INIT'">
             <view class="top"> 
                 <view class="time">
                     <text>订单待支付</text>
@@ -21,7 +21,7 @@
                 <view class="cancel">取消订单</view>
         </view>
         <!-- 订单完成 -->
-        <view class="box notice" v-if="orderInfo.status===3">
+        <view class="box notice" v-if="!orderInfo.order_status==='INIT'">
             <view class="top"> 
                 <view class="time">
                     <text>交易成功</text>
@@ -32,58 +32,23 @@
             </view>
         </view>
         <!-- 待使用（核销）-->
-        <view class="box notice" v-if="orderInfo.status===4">
+        <view class="box notice" v-if="orderInfo.order_status==='SUCCESS'">
             <view class="top"> 
                 <view class="time">
                     <text>待使用</text>
-                </view>
-                <view class="type">
-                <text>请在</text>
-                 <nut-countdown 
-                        class="countdown"
-                        v-model="state.resetTime" 
-                        :endTime="state.end" 
-                        @on-end="EndHandle()"
-                        format="mm : ss ">
-                    </nut-countdown>
-                    <text>（含）前到店消费</text>
-                </view>
+                </view>          
+                <view class="type">请在<text class="times">{{orderInfo.deadline}}</text>（含）前到店消费</view>
             </view>
         </view>
-        <!-- 优惠(套餐信息) -->
-        <!-- <view class="starBoxCard" >   
-            <cdn-img src="src"  class="mealImg" mode="aspectFill"/>  
-            <view class="BoxCard_info">
-                <view class="s_title">正宗四川豌豆小面，唇齿留香，限量供应，卖完即止！</view>
-                <view class="money">周一至周日</view>
-                <view class="tagRow flex">
-                    <view class="tag fcenter"><Success  color="#fe7049"></Success>过期退</view>
-                    <view class="tag fcenter" ><Success  color="#fe7049"></Success>随时退</view>
-                    <view class="tag fcenter"><Success  color="#fe7049"></Success>免预约</view>
-                </view>
-               
-            </view>
-        </view> -->
-        <BuyCard />
+        <BuyCard :data="goods"/>
         <!-- 二维码 -->
-        <view v-if="orderInfo.status===4" class="starBoxCard ">
-            <view class="Verification">
-                <image src="/static/img/me/bg1.png" class=" qrCode" :showMenuByLongpress="true"/>
-                <view class='Qr'>
-                <view class="left"> 
-                    <!-- <view class="h3" >券号：2234 5678 2234 <cdn-img src="/static/img/copy.png"  class="copy"  @click="setClipboard('123')"/></view> -->
-                    <view class="s_store fcenter" @click="showBasic = true">2份可用 · 查看卷码<Right color="#666" size="16"/></view>
-                    <view class="validity">有效期至2023.12.30  23:59</view>
-                </view>
-                <view class="refund" @click="goToSub(`refund/index`)">申请退款</view>
-            </view>
-            </view>
-            
+        <view v-if="orderInfo.order_status==='SUCCESS'" class="starBoxCard ">
+            <ziji-consume-card  :orderId="orderInfo.out_order_no"></ziji-consume-card>
         </view>
         <!--适用门店 -->
-        <BuyDetail  v-if="orderInfo.status!==2"/>
+        <BuyDetail   :product_id="135" v-if="orderInfo.order_status==='SUCCESS'"/>
         <!-- 团购详情 -->
-        <BuyPackage v-if="orderInfo.status!==2" :menu="bundleInfo.group"/>
+        <BuyPackage v-if="orderInfo.order_status==='SUCCESS'" :menu="bundleInfo"/>
         <!-- 订单信息 -->
         <view class="block msg">
             <view class="h3 message">订单信息</view>
@@ -95,27 +60,19 @@
                     <view class="text">商品金额</view>
                 </view>
                 <view class="right">
-                    <view class="text">1</view>
-                    <view class="text">2</view>    
-                    <view class="text">3(份)</view> 
-                    <view class="text">￥4</view>   
-                    <view class="text" v-if="orderInfo.status===2">合计￥<span class="span">180</span></view>
+                    <view class="text">{{orderInfo.out_order_no}}</view>
+                    <view class="text">{{orderInfo.create_order_time  }}</view>    
+                    <view class="text">{{goods.quantity}}(份)</view> 
+                    <view class="text">￥{{ goods.price }}</view>   
+                    <view class="text" v-if="orderInfo.order_status==='INIT'">合计￥<span class="span">{{ orderInfo.total_amount }}</span></view>
                 </view>
             </view>
         </view>
          <!-- 使用须知 -->
-         <BuyNotice v-if="orderInfo.status!==2"  :data="Instructions"/>
+         <BuyNotice v-if="orderInfo.order_status==='SUCCESS'"  :data="Instructions"/>
         <!-- 继续付款 -->
-        <button v-if="orderInfo.status===2" class="btn">继续付款</button>
-        <nut-popup :style="{ width:'300px',height:'168px',BorderRadius:'10px'}" v-model:visible="showBasic">
-                    <view class="Coupon">
-                        <view class="title">券号</view>
-                        <view class="txt" >2234 5678 2234 <cdn-img src="/static/img/copy.png"  class="copy"  @click="setClipboard('123')"/> </view>
-                        <view class="txt">2234 5678 2234 <cdn-img src="/static/img/copy.png"  class="copy"  @click="setClipboard('456')"/></view>
-                        <nut-divider class="divider"/>
-                        <view class="close" @click="showBasic = false">关闭</view>
-                    </view>
-        </nut-popup>
+        <!-- <button v-if="orderInfo.order_status==='INIT'" class="btn">继续付款</button> -->
+        <zijie-keep-button  :orderId="2023070551101555" ></zijie-keep-button>
 </SafeAreaView>
 </template>
 
@@ -125,9 +82,8 @@ import { useUserStore } from '@/stores'
 import { useLoad, requestPayment, showToast, setClipboardData } from '@tarojs/taro'
 import { Success, Right } from '@nutui/icons-vue-taro';
 import QR from '@/utils/qrcode2.js';
-import { storeToRefs } from "pinia";
-
-import { firstLogin, goToSub } from '@/utils/nav'
+import { getOrderShow, getGoodListShow } from "@/api/index";
+import {  goToSub } from '@/utils/nav'
 import { redirectTo } from '@/router'
 import { getTimeTemp } from '@/utils/helper';
 import "./detail.scss";
@@ -135,23 +91,14 @@ import "./detail.scss";
 definePageConfig({
 navigationBarTitleText: '订单详情',
 })
-const Instructions = ref({effective_time:'365',use_time:'全天',suit_range:'123',})   //使用须知
-const orderInfo = ref({status:4})    // 订单详情
-// const id = ref(null) //单ID
+const Instructions = ref({})   //使用须知
+const orderInfo = ref({})    // 订单详情
+const goods = ref({})  //订单商品详情
+const id = ref(null) //单ID
 const showBasic = ref(false)
 const number =ref({number:'2234 5678 2234 '},{number:'2234 5678 2234 '})
-const bundleInfo = ref({    //团购详情
-    banner: [],
-    title: '',
-    original_price: 0,
-    price: 0,
-    group: [
-        {name:'招牌豌杂小面',number:'2',unit:'3',money:'16'},
-        {name:'汽水',number:'2',unit:'3',money:'2'},
-    ],
-    detail: '',
-})
-const id = ref(null)  //适应门店id
+const bundleInfo = ref(null)    //团购详情
+const product_id = ref(null)  //适应门店id
 const state = reactive({
     end: 0, // Date.now() + 3600 * 1000
     start: 2,
@@ -168,29 +115,35 @@ const setClipboard = data => {
       })
     }
 const qrCodeImg = ref("https://www.baidu.com");
-// useLoad((option) => {
+useLoad((option) => {
+product_id.value = option.id
+id.value = option.id
+getOrderShow({id: option.id}).then(res=>{
+    if(res&&res.data){ 
+        orderInfo.value = res.data
+        goods.value = res.data.goods
+        state.end = getTimeTemp(orderInfo.value.create_order_time) + (9600 * 1000)
 
-// order_id.value = option.order_id
-// // 套餐详情
-// bundleDetail({activity_id: option.activity_id, set_meal_id: option.meal_id}).then(res=>{
-//     if(res&&res.data){ 
-//         bundleInfo.value = res.data
-//         const { effective_time, use_time, suit_range, rules } = res.data
-//         Instructions.value = { effective_time, use_time, suit_range, rules }
-//     }
-// })
-id.value = 1
-// getOrderShow(id).then(res=>{
-    // if(res&&res.data){ 
-    //     orderInfo.value = res.data
-    //     state.end = getTimeTemp(orderInfo.value.place_order_time) + (3600 * 1000)
-    //     // 核销二维码
-    //     qrCodeImg.value = QR.drawImg(orderInfo.value.out_trade_no, {
-    //         size: 140
-    //     })
-    // }
-// })
-// })
+        getGoodListShow({id:res.data.goods.goods_id}).then(res=>{
+            if(res&&res.data){ 
+                const { use_date,suit_range,use_time,appointment,private_room,superimposed_discounts,free_pack,description_rich_text } = res.data
+                Instructions.value = { use_date,suit_range,use_time,appointment,private_room,superimposed_discounts,free_pack,description_rich_text }
+                bundleInfo.value = res.data.sku.commodity
+                //使用须知
+               
+            }
+})
+
+        // 核销二维码
+        // qrCodeImg.value = QR.drawImg(orderInfo.value.out_trade_no, {
+        //     size: 140
+        // })
+    }
+})
+// 套餐详情
+
+})
+
 
 // function submit(){
 // //获取order_id
@@ -224,3 +177,9 @@ function EndHandle() {
 
 }
 </script>
+<!-- <script>
+	return {
+			...toRefs(state),
+			applyRefund,
+		}
+</script> -->
